@@ -1,0 +1,42 @@
+{
+    "plugins": [
+        "@typescript-eslint"
+    ],
+    "extends": [
+        "airbnb-typescript",
+        "airbnb/hooks",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@typescript-eslint/recommended-requiring-type-checking",
+        "prettier"
+    ],
+    "parserOptions": {
+        "project": "./tsconfig.json"
+    },
+    "rules": {
+        "import/prefer-default-export": "off",
+        "react/prop-types": [0],
+        "react/jsx-indent": [2, 4],
+        "react/jsx-indent-props": [2, 4],
+        "@typescript-eslint/indent": ["error", 4],
+        "@typescript-eslint/explicit-module-boundary-types": "off",
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "@typescript-eslint/no-floating-promises": "off",
+        "max-len": ["error", { "code": 120, "tabWidth": 4, "comments": 120 }],
+        "object-curly-spacing": 2,
+        "@typescript-eslint/no-use-before-define": [
+            "error",
+            { "functions": false, "classes": true, "variables": true, "typedefs": true }
+        ],
+        "comma-dangle": ["error", "always-multiline"],
+        "no-param-reassign": ["error", { "props": false }],
+        "react/jsx-props-no-spreading": "off",
+        "@typescript-eslint/no-empty-interface": [
+            "error",
+            {
+                "allowSingleExtends": true
+            }
+        ],
+        "@typescript-eslint/no-unsafe-call": 0
+    },
+    "ignorePatterns": ["public/**"]
+}
