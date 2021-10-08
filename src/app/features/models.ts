@@ -1,4 +1,4 @@
-import { IPagination } from '../../models';
+import { IPagination } from '../models';
 
 /** Paginated data generic model. */
 export interface IPaginatedData<T> extends IPagination {

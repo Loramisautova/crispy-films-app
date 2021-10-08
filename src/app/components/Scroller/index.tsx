@@ -1,13 +1,13 @@
 import { Tab, Tabs, Typography } from '@material-ui/core';
 import React from 'react';
-import { IMovieListItem } from '../../features/movies/models';
+import { IMovieListItem } from '../../features/models';
 import { MovieCard } from '../MovieCard';
 
 import { useStyles } from './styles';
 
 interface ITabItemProps {
     title: string;
-    onClick?: (e: React.MouseEvent<unknown>) => void
+    onClick?: (e: React.MouseEvent<unknown>) => void;
 }
 
 interface IScrollerProps {
@@ -28,13 +28,11 @@ export const Scroller: React.FC<IScrollerProps> = (props) => {
     return (
         <div className={classes.root}>
             <div className={classes.header}>
-                <Typography className={classes.headerTitle} variant='h5'>{title}</Typography>
+                <Typography className={classes.headerTitle} variant="h5">
+                    {title}
+                </Typography>
                 {tabs?.length && (
-                    <Tabs
-                        value={selectedTab}
-                        textColor="primary"
-                        onChange={handleChangeSelectedTab}
-                    >
+                    <Tabs value={selectedTab} textColor="primary" onChange={handleChangeSelectedTab}>
                         {tabs.map((tab) => (
                             <Tab
                                 key={tab.title}
@@ -48,16 +46,8 @@ export const Scroller: React.FC<IScrollerProps> = (props) => {
                 )}
             </div>
             <div className={classes.content}>
-                {items?.length && (
-                    items.map((item) => (
-                        <MovieCard
-                            key={item.id}
-                            className={classes.card}
-                            {...item}
-                        />
-                    ))
-                )}
+                {items?.length && items.map((item) => <MovieCard key={item.id} className={classes.card} {...item} />)}
             </div>
         </div>
     );
-}
+};

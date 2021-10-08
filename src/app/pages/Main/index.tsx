@@ -2,13 +2,15 @@ import React from 'react';
 import { Scroller } from '../../components/Scroller';
 
 import { useGetPopularQuery } from '../../features/movies/api';
+import { useGetTrendingQuery } from '../../features/trending/api';
 
 export const MainPage: React.FC = () => {
-    const popularMoviesState = useGetPopularQuery(null);
+    const useGetPopularState = useGetPopularQuery(null);
+    const useGetTrendingState = useGetTrendingQuery(null);
 
     // tslint:disable:no-console
     console.log('#######');
-    console.log('popularMoviesState:', popularMoviesState);
+    console.log('popularMoviesState:', useGetPopularState);
     console.log('#######');
     // tslint:enable:no-console
 
@@ -16,64 +18,10 @@ export const MainPage: React.FC = () => {
         <div>
             <Scroller
                 title="What's Popular"
-                tabs={[
-                    { title: 'Streaming' },
-                    { title: 'On TV' },
-                    { title: 'For Rent' },
-                    { title: 'In Theaters' },
-                ]}
-                items={popularMoviesState.data?.results}
+                tabs={[{ title: 'Streaming' }, { title: 'On TV' }, { title: 'For Rent' }, { title: 'In Theaters' }]}
+                items={useGetPopularState.data?.results}
             />
-            <Scroller
-                title="What's Popular"
-                tabs={[
-                    { title: 'Streaming' },
-                    { title: 'On TV' },
-                    { title: 'For Rent' },
-                    { title: 'In Theaters' },
-                ]}
-                items={popularMoviesState.data?.results}
-            />
-            <Scroller
-                title="What's Popular"
-                tabs={[
-                    { title: 'Streaming' },
-                    { title: 'On TV' },
-                    { title: 'For Rent' },
-                    { title: 'In Theaters' },
-                ]}
-                items={popularMoviesState.data?.results}
-            />
-            <Scroller
-                title="What's Popular"
-                tabs={[
-                    { title: 'Streaming' },
-                    { title: 'On TV' },
-                    { title: 'For Rent' },
-                    { title: 'In Theaters' },
-                ]}
-                items={popularMoviesState.data?.results}
-            />
-            <Scroller
-                title="What's Popular"
-                tabs={[
-                    { title: 'Streaming' },
-                    { title: 'On TV' },
-                    { title: 'For Rent' },
-                    { title: 'In Theaters' },
-                ]}
-                items={popularMoviesState.data?.results}
-            />
-            <Scroller
-                title="What's Popular"
-                tabs={[
-                    { title: 'Streaming' },
-                    { title: 'On TV' },
-                    { title: 'For Rent' },
-                    { title: 'In Theaters' },
-                ]}
-                items={popularMoviesState.data?.results}
-            />
+            <Scroller title="Trending" items={useGetTrendingState.data?.results} />
         </div>
     );
 };

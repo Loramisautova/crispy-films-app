@@ -8,16 +8,16 @@ import { EAPITag } from '../enums';
 
 import { IPaginatedMovieList } from '../models';
 
-/** TMDB movies api. */
-export const tmdbMoviesApi = createApi({
-    reducerPath: 'movies',
-    baseQuery: fetchBaseQuery({ baseUrl: `${TMDB_API_BASE_URL}/movie` }),
-    tagTypes: [EAPITag.MOVIE],
+/** TMDB Trending API. */
+export const tmdbTrendingApi = createApi({
+    reducerPath: 'trending',
+    baseQuery: fetchBaseQuery({ baseUrl: `${TMDB_API_BASE_URL}/trending` }),
+    tagTypes: [EAPITag.TRENDING],
     endpoints: (build) => ({
-        /** Movies popular list. */
-        getPopular: build.query<IPaginatedMovieList, IPaginatedQueryArgs | null>({
+        /** Trending list. */
+        getTrending: build.query<IPaginatedMovieList, IPaginatedQueryArgs | null>({
             query: (params) => ({
-                url: '/popular',
+                url: '/all/day',
                 params: {
                     ...params,
                     api_key: '2982bad10a93c3bc7f2c5245f865294c',
@@ -39,4 +39,4 @@ export const tmdbMoviesApi = createApi({
     }),
 });
 
-export const { useGetPopularQuery } = tmdbMoviesApi;
+export const { useGetTrendingQuery } = tmdbTrendingApi;

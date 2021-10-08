@@ -2,7 +2,7 @@ import { Typography } from '@material-ui/core';
 import classnames from 'classnames';
 import React from 'react';
 
-import { IMovieListItem } from '../../features/movies/models';
+import { IMovieListItem } from '../../features/models';
 import { IClassName } from '../../models';
 
 import { useStyles } from './styles';
@@ -16,19 +16,18 @@ export const MovieCard: React.FC<IMovieCardProps> = (props) => {
     return (
         <div className={classnames(classes.root, className)}>
             <div className={classes.image}>
-                {
-                    posterPath && (
-                        <img
-                            src={`https://www.themoviedb.org/t/p/w440_and_h660_face${posterPath}`}
-                            alt={title}
-                        />
-                    )
-                }
+                {posterPath && (
+                    <img src={`https://www.themoviedb.org/t/p/w440_and_h660_face${posterPath}`} alt={title} />
+                )}
             </div>
             <div className={classes.content}>
-                <Typography className={classes.title} variant="body1">{title}</Typography>
-                <Typography className={classes.subTitle} variant="body2" >{releaseDate}</Typography>
+                <Typography className={classes.title} variant="body1">
+                    {title}
+                </Typography>
+                <Typography className={classes.subTitle} variant="body2">
+                    {releaseDate}
+                </Typography>
             </div>
         </div>
     );
-}
+};
