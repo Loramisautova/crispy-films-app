@@ -8,11 +8,7 @@ import React from 'react';
 export const AsyncExample: React.FC = () => {
     const d = 33;
 
-    return (
-        <>
-            123
-        </>
-    );
+    return <>123</>;
     // const queryArgs = useAppSelector((state) => state.entity.queryArgs);
     // const entityListState = useGetEntityListQuery(queryArgs);
     // const dispatch = useAppDispatch();
