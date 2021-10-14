@@ -13,9 +13,5 @@ export const MainLayout: React.FC = (props) => {
     const { children } = props;
     const classes = useStyles();
 
-    return (
-        <div className={classes.root}>
-            {children}
-        </div>
-    )
+    return <div className={classes.root}>{children}</div>;
 };

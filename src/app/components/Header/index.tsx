@@ -15,17 +15,17 @@ export const Header: React.FC = () => {
     const handleLogoClick = () => window.location.replace(APP_ROUTES.MAIN.PATH);
 
     return (
-        <AppBar position='static'>
+        <AppBar position="static">
             <Toolbar className={classes.toolbar}>
                 <div
                     className={classes.logo}
-                    role='link'
+                    role="link"
                     tabIndex={0}
                     onClick={handleLogoClick}
                     onKeyPress={handleLogoClick}
                 >
                     <Logo className={classes.logoImage} />
-                    <Typography variant='h6' display='inline'>
+                    <Typography variant="h6" display="inline">
                         {APP_NAME}
                     </Typography>
                 </div>

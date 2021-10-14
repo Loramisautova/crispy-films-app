@@ -6,7 +6,7 @@ import { useStyles } from './styles';
 
 interface IHoverMenuItemProps {
     title: string;
-    onClick?: (e: React.MouseEvent<unknown>) => void
+    onClick?: (e: React.MouseEvent<unknown>) => void;
 }
 
 interface IHoverMenuProps {
@@ -40,19 +40,19 @@ export const HoverMenu: React.FC<IHoverMenuProps> = (props) => {
     const handleEnterButton = (event: React.MouseEvent<HTMLDivElement>) => {
         setAnchorEl(event.currentTarget);
         setMouseOverButton(true);
-    }
+    };
 
     const handleLeaveButton = () => {
         setMouseOverButton(false);
-    }
+    };
 
     const handleEnterMenu = () => {
         setMouseOverMenu(true);
-    }
+    };
 
     const handleLeaveMenu = () => {
         setMouseOverMenu(false);
-    }
+    };
 
     const handleMenuItemClick = (
         e: React.MouseEvent<unknown>,
@@ -77,9 +77,7 @@ export const HoverMenu: React.FC<IHoverMenuProps> = (props) => {
                 onMouseEnter={handleEnterButton}
                 onMouseLeave={handleLeaveButton}
             >
-                <Typography variant='body2'>
-                    {title}
-                </Typography>
+                <Typography variant="body2">{title}</Typography>
             </div>
             <Menu
                 id={id}
@@ -114,12 +112,10 @@ export const HoverMenu: React.FC<IHoverMenuProps> = (props) => {
                         classes={{ root: classes.menuItemRoot }}
                         onClick={(e) => handleMenuItemClick(e, item.onClick)}
                     >
-                        <Typography variant='body2'>
-                            {item.title}
-                        </Typography>
+                        <Typography variant="body2">{item.title}</Typography>
                     </MenuItem>
                 ))}
             </Menu>
         </div>
     );
-}
+};

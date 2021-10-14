@@ -5,5 +5,5 @@ import camelcaseKeys from 'camelcase-keys';
  *
  * @param data Data to transform.
  */
-export const transformToCamelCase =
-    <T>(data: Record<string, unknown> | readonly unknown[]): T => camelcaseKeys(data, { deep: true }) as T;
+export const transformToCamelCase = <T>(data: Record<string, unknown> | readonly unknown[]): T =>
+    camelcaseKeys(data, { deep: true }) as T;

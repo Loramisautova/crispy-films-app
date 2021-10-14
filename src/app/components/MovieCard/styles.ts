@@ -1,8 +1,7 @@
 import { makeStyles } from '@material-ui/core';
 
 export const useStyles = makeStyles((theme) => ({
-    root: {
-    },
+    root: {},
     image: {
         width: 150,
         '& > img': {
