@@ -3,14 +3,12 @@ import { setupListeners } from '@reduxjs/toolkit/query/react';
 
 import { tmdbMoviesApi } from './features/movies/api';
 import { tmdbTrendingApi } from './features/trending/api';
-// import { entitySlice } from './features/movies/slice';
 
 /** Configure store. */
 export const store = configureStore({
     reducer: {
         [tmdbMoviesApi.reducerPath]: tmdbMoviesApi.reducer,
         [tmdbTrendingApi.reducerPath]: tmdbTrendingApi.reducer,
-        // [entitySlice.name]: entitySlice.reducer,
     },
     /**
      * Adding the api middleware enables caching, invalidation, polling,

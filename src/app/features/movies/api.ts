@@ -3,9 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
 import { TMDB_API_BASE_URL } from '../../consts';
 import { IPaginatedQueryArgs } from '../../models';
 import { transformToCamelCase } from '../../utils/transformToCamelCase';
-
 import { EAPITag } from '../enums';
-
 import { IPaginatedMovieList } from '../models';
 
 /** TMDB movies api. */
@@ -25,16 +23,6 @@ export const tmdbMoviesApi = createApi({
             }),
             transformResponse: (response: Record<string, unknown>): IPaginatedMovieList =>
                 transformToCamelCase(response),
-            // providesTags: (result) => {
-            //     if (result) {
-            //         return [
-            //             ...result.data.map(({ id }) => ({ type: EAPITag.ENTITY as const, id })),
-            //             { type: EAPITag.ENTITY, id: 'LIST' },
-            //         ];
-            //     }
-
-            //     return [{ type: EAPITag.ENTITY, id: 'LIST' }];
-            // },
         }),
     }),
 });
