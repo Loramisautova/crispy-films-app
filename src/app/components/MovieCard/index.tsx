@@ -2,15 +2,19 @@ import { Typography } from '@material-ui/core';
 import classnames from 'classnames';
 import React from 'react';
 
-import { IMovieListItem } from '../../features/models';
 import { IClassName } from '../../models';
 
 import { useStyles } from './styles';
 
-interface IMovieCardProps extends IMovieListItem, IClassName {}
+export interface IMovieCardProps extends IClassName {
+    id?: number;
+    title: string;
+    date: string;
+    posterPath?: string;
+}
 
 export const MovieCard: React.FC<IMovieCardProps> = (props) => {
-    const { className, title, releaseDate, posterPath } = props;
+    const { className, title, date, posterPath } = props;
     const classes = useStyles();
 
     return (
@@ -25,7 +29,7 @@ export const MovieCard: React.FC<IMovieCardProps> = (props) => {
                     {title}
                 </Typography>
                 <Typography className={classes.subTitle} variant="body2">
-                    {releaseDate}
+                    {date}
                 </Typography>
             </div>
         </div>

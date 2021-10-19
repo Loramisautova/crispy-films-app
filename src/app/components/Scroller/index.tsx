@@ -1,19 +1,21 @@
 import { Tab, Tabs, Typography } from '@material-ui/core';
 import React from 'react';
-import { IMovieListItem } from '../../features/models';
-import { MovieCard } from '../MovieCard';
+
+import { IMovieListItem, isTvListItem, ITVListItem } from '../../features/models';
+import { IMovieCardProps, MovieCard } from '../MovieCard';
 
 import { useStyles } from './styles';
 
 interface ITabItemProps {
     title: string;
+    onMouseEnter?: (e: React.MouseEvent<unknown>) => void;
     onClick?: (e: React.MouseEvent<unknown>) => void;
 }
 
 interface IScrollerProps {
     title: string;
     tabs?: ITabItemProps[];
-    items?: IMovieListItem[];
+    items?: (IMovieListItem | ITVListItem)[];
 }
 
 export const Scroller: React.FC<IScrollerProps> = (props) => {
@@ -35,18 +37,44 @@ export const Scroller: React.FC<IScrollerProps> = (props) => {
                     <Tabs value={selectedTab} textColor="primary" onChange={handleChangeSelectedTab}>
                         {tabs.map((tab) => (
                             <Tab
-                                key={tab.title}
                                 classes={{
                                     root: classes.headerTabItem,
                                 }}
                                 label={tab.title}
+                                onMouseEnter={tab.onMouseEnter}
+                                onClick={tab.onClick}
                             />
                         ))}
                     </Tabs>
                 )}
             </div>
             <div className={classes.content}>
-                {items?.length && items.map((item) => <MovieCard key={item.id} className={classes.card} {...item} />)}
+                {items?.length &&
+                    items.map((item) => {
+                        const movieCardItem: IMovieCardProps = isTvListItem(item)
+                            ? {
+                                  id: item.id,
+                                  title: item.name,
+                                  date: item.firstAirDate,
+                                  posterPath: item.posterPath,
+                              }
+                            : {
+                                  id: item.id,
+                                  title: item.title,
+                                  date: item.releaseDate,
+                                  posterPath: item.posterPath,
+                              };
+
+                        return (
+                            <MovieCard
+                                key={movieCardItem.id}
+                                className={classes.card}
+                                title={movieCardItem.title}
+                                date={movieCardItem.date}
+                                posterPath={movieCardItem.posterPath}
+                            />
+                        );
+                    })}
             </div>
         </div>
     );
