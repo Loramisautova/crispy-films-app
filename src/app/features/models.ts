@@ -53,3 +53,15 @@ export interface IPaginatedMovieList extends IPaginatedData<IMovieListItem[]> {}
 
 /** Tv list model. */
 export interface IPaginatedTvList extends IPaginatedData<ITVListItem[]> {}
+
+/** Video item model. */
+export interface IVideoItem {
+    name: string;
+    key: string;
+    site: string;
+    size: number;
+    type: string;
+    official: boolean;
+    publishedAt: string;
+    id: string;
+}

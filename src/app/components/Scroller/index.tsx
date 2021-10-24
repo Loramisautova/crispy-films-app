@@ -1,8 +1,7 @@
 import { Tab, Tabs, Typography } from '@material-ui/core';
 import React from 'react';
 
-import { IMovieListItem, isTvListItem, ITVListItem } from '../../features/models';
-import { IMovieCardProps, MovieCard } from '../MovieCard';
+import { MovieScroller } from '../MovieScroller';
 
 import { useStyles } from './styles';
 
@@ -15,11 +14,10 @@ interface ITabItemProps {
 interface IScrollerProps {
     title: string;
     tabs?: ITabItemProps[];
-    items?: (IMovieListItem | ITVListItem)[];
 }
 
 export const Scroller: React.FC<IScrollerProps> = (props) => {
-    const { title, tabs, items } = props;
+    const { title, tabs, children } = props;
     const classes = useStyles();
     const [selectedTab, setSelectedTab] = React.useState(0);
 
@@ -48,34 +46,7 @@ export const Scroller: React.FC<IScrollerProps> = (props) => {
                     </Tabs>
                 )}
             </div>
-            <div className={classes.content}>
-                {items?.length &&
-                    items.map((item) => {
-                        const movieCardItem: IMovieCardProps = isTvListItem(item)
-                            ? {
-                                  id: item.id,
-                                  title: item.name,
-                                  date: item.firstAirDate,
-                                  posterPath: item.posterPath,
-                              }
-                            : {
-                                  id: item.id,
-                                  title: item.title,
-                                  date: item.releaseDate,
-                                  posterPath: item.posterPath,
-                              };
-
-                        return (
-                            <MovieCard
-                                key={movieCardItem.id}
-                                className={classes.card}
-                                title={movieCardItem.title}
-                                date={movieCardItem.date}
-                                posterPath={movieCardItem.posterPath}
-                            />
-                        );
-                    })}
-            </div>
+            <MovieScroller>{children}</MovieScroller>
         </div>
     );
 };

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 
 import { Scroller } from '../../components/Scroller';
+import { MovieScroller } from '../../components/MovieScroller';
+import { VideoScroller } from '../../components/VideoScroller';
 import { useGetPopularMoviesQuery, usePrefetch as usePopularMoviesPrefetch } from '../../features/movies/api';
 import { useGetTrendingQuery, usePrefetch as useTrendingPrefetch } from '../../features/trending/api';
 import { useGetPopularTvQuery } from '../../features/tv/api';
@@ -33,8 +35,22 @@ export const MainPage: React.FC = () => {
                         onMouseEnter: () => prefetchPopularMovies(),
                     },
                 ]}
-                items={popularResults}
             />
+            <MovieScroller items={popularResults} />
+            <Scroller
+                title="Latest Trailers"
+                tabs={[
+                    {
+                        title: 'On TV',
+                    },
+                    {
+                        title: 'In Theatres',
+                        onClick: () => setTrendingTab('week'),
+                        onMouseEnter: () => prefetchTrendingWeek('week'),
+                    },
+                ]}
+            />
+            <VideoScroller />
             <Scroller
                 title="Trending"
                 tabs={[
@@ -48,8 +64,8 @@ export const MainPage: React.FC = () => {
                         onMouseEnter: () => prefetchTrendingWeek('week'),
                     },
                 ]}
-                items={useGetTrendingState.data?.results}
             />
+            <MovieScroller items={useGetTrendingState.data?.results} />
         </div>
     );
 };

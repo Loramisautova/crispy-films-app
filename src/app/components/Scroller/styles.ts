@@ -17,15 +17,4 @@ export const useStyles = makeStyles((theme) => ({
     headerTabItem: {
         fontSize: theme.typography.caption.fontSize,
     },
-    content: {
-        display: 'flex',
-        padding: theme.spacing(3, 0),
-        overflowX: 'scroll',
-        overflowY: 'hidden',
-    },
-    card: {
-        '& + &': {
-            marginLeft: theme.spacing(3),
-        },
-    },
 }));

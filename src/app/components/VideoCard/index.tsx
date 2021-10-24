@@ -1,0 +1,43 @@
+import { Typography } from '@material-ui/core';
+import PlayArrowIcon from '@material-ui/icons/PlayArrow';
+import classnames from 'classnames';
+import React from 'react';
+
+import { IClassName } from '../../models';
+
+import { useStyles } from './styles';
+
+export interface IVideoCardProps extends IClassName {
+    id?: string;
+    video: string;
+    title: string;
+    date: string;
+}
+
+export const VideoCard: React.FC<IVideoCardProps> = (props) => {
+    const { className, title, date, video } = props;
+    const classes = useStyles();
+
+    return (
+        <div className={classnames(classes.root, className)}>
+            <div className={classes.trailer}>
+                <div className={classes.wrapper}>
+                    <div className={classes.image}>
+                        {video && <img src={`https://img.youtube.com/vi/${video}/hqdefault.jpg`} alt={title} />}
+                    </div>
+                    <div className={classes.play}>
+                        <PlayArrowIcon className={classes.icon} />
+                    </div>
+                </div>
+            </div>
+            <div className={classes.content}>
+                <Typography className={classes.title} variant="body1">
+                    {title}
+                </Typography>
+                <Typography className={classes.subTitle} variant="body2">
+                    {date}
+                </Typography>
+            </div>
+        </div>
+    );
+};
