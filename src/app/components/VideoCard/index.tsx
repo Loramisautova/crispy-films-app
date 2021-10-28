@@ -4,6 +4,7 @@ import classnames from 'classnames';
 import React from 'react';
 
 import { IClassName } from '../../models';
+import { VideoPlayer } from '../VideoPlayer';
 
 import { useStyles } from './styles';
 
@@ -16,12 +17,23 @@ export interface IVideoCardProps extends IClassName {
 
 export const VideoCard: React.FC<IVideoCardProps> = (props) => {
     const { className, title, date, video } = props;
+    const [isOpen, setIsOpen] = React.useState(false);
     const classes = useStyles();
+
+    const handleClose = () => {
+        setIsOpen(false);
+    };
 
     return (
         <div className={classnames(classes.root, className)}>
             <div className={classes.trailer}>
-                <div className={classes.wrapper}>
+                <div
+                    className={classes.wrapper}
+                    role="button"
+                    tabIndex={0}
+                    onClick={() => setIsOpen(true)}
+                    onKeyDown={() => setIsOpen(true)}
+                >
                     <div className={classes.image}>
                         {video && <img src={`https://img.youtube.com/vi/${video}/hqdefault.jpg`} alt={title} />}
                     </div>
@@ -38,6 +50,7 @@ export const VideoCard: React.FC<IVideoCardProps> = (props) => {
                     {date}
                 </Typography>
             </div>
+            <VideoPlayer isOpen={isOpen} onClose={handleClose} title={title} video={video} />
         </div>
     );
 };

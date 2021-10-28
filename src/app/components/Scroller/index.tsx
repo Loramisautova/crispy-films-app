@@ -1,7 +1,7 @@
 import { Tab, Tabs, Typography } from '@material-ui/core';
 import React from 'react';
 
-import { MovieScroller } from '../MovieScroller';
+// import { MovieScroller } from '../MovieScroller';
 
 import { useStyles } from './styles';
 
@@ -12,7 +12,7 @@ interface ITabItemProps {
 }
 
 interface IScrollerProps {
-    title: string;
+    title?: string;
     tabs?: ITabItemProps[];
 }
 
@@ -46,7 +46,7 @@ export const Scroller: React.FC<IScrollerProps> = (props) => {
                     </Tabs>
                 )}
             </div>
-            <MovieScroller>{children}</MovieScroller>
+            <div className={classes.content}>{children}</div>
         </div>
     );
 };

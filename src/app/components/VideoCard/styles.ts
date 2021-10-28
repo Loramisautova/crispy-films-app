@@ -8,7 +8,7 @@ export const useStyles = makeStyles((theme) => ({
         height: `calc(300px / 1.78)`,
     },
     wrapper: {
-        borderRadius: 8,
+        // borderRadius: 8,
         overflow: 'hidden',
         position: 'relative',
         top: 0,
@@ -16,6 +16,7 @@ export const useStyles = makeStyles((theme) => ({
         minWidth: '100%',
         width: '100%',
         height: '100%',
+        cursor: 'pointer',
     },
     image: {
         maxWidth: 300,

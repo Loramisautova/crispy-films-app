@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
-import { Scroller } from '../../components/Scroller';
 import { MovieScroller } from '../../components/MovieScroller';
 import { VideoScroller } from '../../components/VideoScroller';
+import { TRAILERS } from '../../consts';
 import { useGetPopularMoviesQuery, usePrefetch as usePopularMoviesPrefetch } from '../../features/movies/api';
 import { useGetTrendingQuery, usePrefetch as useTrendingPrefetch } from '../../features/trending/api';
 import { useGetPopularTvQuery } from '../../features/tv/api';
@@ -25,7 +25,8 @@ export const MainPage: React.FC = () => {
 
     return (
         <div>
-            <Scroller
+            <MovieScroller
+                items={popularResults}
                 title="What's Popular"
                 tabs={[
                     { title: 'On TV', onClick: () => setPopularTab('tv') },
@@ -36,8 +37,8 @@ export const MainPage: React.FC = () => {
                     },
                 ]}
             />
-            <MovieScroller items={popularResults} />
-            <Scroller
+            <VideoScroller
+                items={TRAILERS}
                 title="Latest Trailers"
                 tabs={[
                     {
@@ -50,8 +51,8 @@ export const MainPage: React.FC = () => {
                     },
                 ]}
             />
-            <VideoScroller />
-            <Scroller
+            <MovieScroller
+                items={useGetTrendingState.data?.results}
                 title="Trending"
                 tabs={[
                     {
@@ -65,7 +66,6 @@ export const MainPage: React.FC = () => {
                     },
                 ]}
             />
-            <MovieScroller items={useGetTrendingState.data?.results} />
         </div>
     );
 };

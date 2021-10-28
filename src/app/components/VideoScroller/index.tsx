@@ -1,25 +1,34 @@
 import React from 'react';
 
 import { IVideoItem } from '../../features/models';
+import { Scroller } from '../Scroller';
 import { VideoCard } from '../VideoCard';
 
 import { useStyles } from './styles';
 
-import { TRAILERS } from '../../consts';
-
-interface IVideoScrollerProps {
-    items?: IVideoItem;
+interface ITabItemProps {
+    title: string;
+    onMouseEnter?: (e: React.MouseEvent<unknown>) => void;
+    onClick?: (e: React.MouseEvent<unknown>) => void;
 }
 
-export const VideoScroller: React.FC<IVideoScrollerProps> = () => {
+interface IVideoScrollerProps {
+    title: string;
+    items?: IVideoItem[];
+    tabs: ITabItemProps[];
+}
+
+export const VideoScroller: React.FC<IVideoScrollerProps> = (props) => {
     const classes = useStyles();
+    const { tabs, title, items } = props;
 
     return (
-        <div className={classes.content}>
-            {TRAILERS.length &&
-                TRAILERS.map((trailer) => (
+        <Scroller tabs={tabs} title={title}>
+            <div className={classes.content}>
+                {items?.map((trailer) => (
                     <VideoCard key={trailer.id} video={trailer.key} title={trailer.name} date={trailer.published_at} />
                 ))}
-        </div>
+            </div>
+        </Scroller>
     );
 };

@@ -3,19 +3,28 @@ import React from 'react';
 import { IMovieListItem, isTvListItem, ITVListItem } from '../../features/models';
 
 import { IMovieCardProps, MovieCard } from '../MovieCard';
+import { Scroller } from '../Scroller';
 
 import { useStyles } from './styles';
 
+interface ITabItemProps {
+    title: string;
+    onMouseEnter?: (e: React.MouseEvent<unknown>) => void;
+    onClick?: (e: React.MouseEvent<unknown>) => void;
+}
+
 interface IMovieScrollerProps {
+    title: string;
     items?: (IMovieListItem | ITVListItem)[];
+    tabs: ITabItemProps[];
 }
 
 export const MovieScroller: React.FC<IMovieScrollerProps> = (props) => {
-    const { items } = props;
+    const { items, tabs, title } = props;
     const classes = useStyles();
 
     return (
-        <div className={classes.content}>
+        <Scroller tabs={tabs} title={title}>
             {items?.length &&
                 items.map((item) => {
                     const movieCardItem: IMovieCardProps = isTvListItem(item)
@@ -31,6 +40,6 @@ export const MovieScroller: React.FC<IMovieScrollerProps> = (props) => {
                         />
                     );
                 })}
-        </div>
+        </Scroller>
     );
 };
