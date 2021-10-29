@@ -9,7 +9,7 @@ import { VideoPlayer } from '../VideoPlayer';
 import { useStyles } from './styles';
 
 export interface IVideoCardProps extends IClassName {
-    id?: string;
+    id: string;
     videoKey: string;
     title: string;
     date: string;

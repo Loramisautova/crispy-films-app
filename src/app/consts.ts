@@ -15,7 +15,7 @@ export const TRAILERS = [
         size: 1080,
         type: 'Trailer',
         official: false,
-        published_at: '2015-02-26 03:19:25 UTC',
+        publishedAt: '2015-02-26 03:19:25 UTC',
         id: '5e382d1b4ca676001453826d',
     },
     {
@@ -27,7 +27,7 @@ export const TRAILERS = [
         size: 1080,
         type: 'Trailer',
         official: true,
-        published_at: '2014-10-02 19:20:22 UTC',
+        publishedAt: '2014-10-02 19:20:22 UTC',
         id: '5c9294240e0a267cd516835f',
     },
 ];

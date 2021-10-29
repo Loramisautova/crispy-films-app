@@ -20,12 +20,7 @@ export const VideoScroller: React.FC<IVideoScrollerProps> = (props) => {
         <Scroller tabs={tabs} title={title}>
             <div className={classes.content}>
                 {items?.map((trailer) => (
-                    <VideoCard
-                        key={trailer.id}
-                        videoKey={trailer.key}
-                        title={trailer.name}
-                        date={trailer.published_at}
-                    />
+                    <VideoCard id={trailer.id} videoKey={trailer.key} title={trailer.name} date={trailer.publishedAt} />
                 ))}
             </div>
         </Scroller>

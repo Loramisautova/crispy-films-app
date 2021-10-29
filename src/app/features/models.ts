@@ -62,6 +62,6 @@ export interface IVideoItem {
     size: number;
     type: string;
     official: boolean;
-    published_at: string;
+    publishedAt: string;
     id: string;
 }
