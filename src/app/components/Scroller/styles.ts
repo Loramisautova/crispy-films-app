@@ -23,9 +23,4 @@ export const useStyles = makeStyles((theme) => ({
         overflowX: 'scroll',
         overflowY: 'hidden',
     },
-    card: {
-        '& + &': {
-            marginLeft: theme.spacing(3),
-        },
-    },
 }));

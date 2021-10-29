@@ -10,13 +10,13 @@ import { useStyles } from './styles';
 
 export interface IVideoCardProps extends IClassName {
     id?: string;
-    video: string;
+    videoKey: string;
     title: string;
     date: string;
 }
 
 export const VideoCard: React.FC<IVideoCardProps> = (props) => {
-    const { className, title, date, video } = props;
+    const { className, title, date, videoKey } = props;
     const [isOpen, setIsOpen] = React.useState(false);
     const classes = useStyles();
 
@@ -27,15 +27,9 @@ export const VideoCard: React.FC<IVideoCardProps> = (props) => {
     return (
         <div className={classnames(classes.root, className)}>
             <div className={classes.trailer}>
-                <div
-                    className={classes.wrapper}
-                    role="button"
-                    tabIndex={0}
-                    onClick={() => setIsOpen(true)}
-                    onKeyDown={() => setIsOpen(true)}
-                >
+                <div className={classes.wrapper} onClick={() => setIsOpen(true)}>
                     <div className={classes.image}>
-                        {video && <img src={`https://img.youtube.com/vi/${video}/hqdefault.jpg`} alt={title} />}
+                        {videoKey && <img src={`https://img.youtube.com/vi/${videoKey}/hqdefault.jpg`} alt={title} />}
                     </div>
                     <div className={classes.play}>
                         <PlayArrowIcon className={classes.icon} />
@@ -50,7 +44,7 @@ export const VideoCard: React.FC<IVideoCardProps> = (props) => {
                     {date}
                 </Typography>
             </div>
-            <VideoPlayer isOpen={isOpen} onClose={handleClose} title={title} video={video} />
+            <VideoPlayer isOpen={isOpen} onClose={handleClose} title={title} videoKey={videoKey} />
         </div>
     );
 };

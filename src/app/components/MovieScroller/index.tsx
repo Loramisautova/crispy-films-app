@@ -3,15 +3,9 @@ import React from 'react';
 import { IMovieListItem, isTvListItem, ITVListItem } from '../../features/models';
 
 import { IMovieCardProps, MovieCard } from '../MovieCard';
-import { Scroller } from '../Scroller';
+import { Scroller, ITabItemProps } from '../Scroller';
 
 import { useStyles } from './styles';
-
-interface ITabItemProps {
-    title: string;
-    onMouseEnter?: (e: React.MouseEvent<unknown>) => void;
-    onClick?: (e: React.MouseEvent<unknown>) => void;
-}
 
 interface IMovieScrollerProps {
     title: string;
@@ -25,21 +19,20 @@ export const MovieScroller: React.FC<IMovieScrollerProps> = (props) => {
 
     return (
         <Scroller tabs={tabs} title={title}>
-            {items?.length &&
-                items.map((item) => {
-                    const movieCardItem: IMovieCardProps = isTvListItem(item)
-                        ? { id: item.id, title: item.name, date: item.firstAirDate, posterPath: item.posterPath }
-                        : { id: item.id, title: item.title, date: item.releaseDate, posterPath: item.posterPath };
-                    return (
-                        <MovieCard
-                            key={movieCardItem.id}
-                            className={classes.card}
-                            title={movieCardItem.title}
-                            date={movieCardItem.date}
-                            posterPath={movieCardItem.posterPath}
-                        />
-                    );
-                })}
+            {items?.map((item) => {
+                const movieCardItem: IMovieCardProps = isTvListItem(item)
+                    ? { id: item.id, title: item.name, date: item.firstAirDate, posterPath: item.posterPath }
+                    : { id: item.id, title: item.title, date: item.releaseDate, posterPath: item.posterPath };
+                return (
+                    <MovieCard
+                        key={movieCardItem.id}
+                        className={classes.card}
+                        title={movieCardItem.title}
+                        date={movieCardItem.date}
+                        posterPath={movieCardItem.posterPath}
+                    />
+                );
+            })}
         </Scroller>
     );
 };

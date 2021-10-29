@@ -11,11 +11,13 @@ interface IVideoPlayerProps {
     isOpen: boolean;
     onClose: () => void;
     title: string;
-    video: string;
+    videoKey: string;
+    width?: number;
+    height?: number;
 }
 
 export const VideoPlayer: React.FC<IVideoPlayerProps> = (props) => {
-    const { isOpen, onClose, title, video } = props;
+    const { isOpen, onClose, title, videoKey, width = 1024, height = 512 } = props;
     const classes = useStyles();
 
     return (
@@ -41,10 +43,10 @@ export const VideoPlayer: React.FC<IVideoPlayerProps> = (props) => {
                             </Typography>
                             <Typography id="transition-modal-description" className={classes.iframe}>
                                 <iframe
-                                    title="YouTube video player"
-                                    width="1019"
-                                    height="580"
-                                    src={`https://www.youtube.com/embed/${video}`}
+                                    title={title}
+                                    width={width.toString()}
+                                    height={height.toString()}
+                                    src={`https://www.youtube.com/embed/${videoKey}`}
                                     frameBorder="0"
                                 />
                             </Typography>

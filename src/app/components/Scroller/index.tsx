@@ -1,11 +1,9 @@
-import { Tab, Tabs, Typography } from '@material-ui/core';
 import React from 'react';
-
-// import { MovieScroller } from '../MovieScroller';
+import { Tab, Tabs, Typography } from '@material-ui/core';
 
 import { useStyles } from './styles';
 
-interface ITabItemProps {
+export interface ITabItemProps {
     title: string;
     onMouseEnter?: (e: React.MouseEvent<unknown>) => void;
     onClick?: (e: React.MouseEvent<unknown>) => void;
