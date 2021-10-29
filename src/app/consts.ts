@@ -1,3 +1,5 @@
+import { IVideoItem } from './features/models';
+
 /** Application name. */
 export const APP_NAME = 'Crispy Films';
 
@@ -5,10 +7,8 @@ export const APP_NAME = 'Crispy Films';
 export const TMDB_API_BASE_URL = 'https://api.themoviedb.org/3';
 
 /** Trailers. */
-export const TRAILERS = [
+export const TRAILERS: IVideoItem[] = [
     {
-        iso_639_1: 'en',
-        iso_3166_1: 'US',
         name: 'Fight Club - Theatrical Trailer Remastered in HD',
         key: '6JnN1DmbqoU',
         site: 'YouTube',
@@ -19,8 +19,6 @@ export const TRAILERS = [
         id: '5e382d1b4ca676001453826d',
     },
     {
-        iso_639_1: 'en',
-        iso_3166_1: 'US',
         name: 'Fight Club | #TBT Trailer | 20th Century FOX',
         key: 'BdJKm16Co6M',
         site: 'YouTube',

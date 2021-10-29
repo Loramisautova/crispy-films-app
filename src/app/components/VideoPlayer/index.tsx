@@ -41,7 +41,7 @@ export const VideoPlayer: React.FC<IVideoPlayerProps> = (props) => {
                                 </Typography>
                                 <CloseIcon className={classes.close} onClick={onClose} fontSize="small" />
                             </Typography>
-                            <Typography id="transition-modal-description" className={classes.iframe}>
+                            <div className={classes.iframe}>
                                 <iframe
                                     title={title}
                                     width={width.toString()}
@@ -49,7 +49,7 @@ export const VideoPlayer: React.FC<IVideoPlayerProps> = (props) => {
                                     src={`https://www.youtube.com/embed/${videoKey}`}
                                     frameBorder="0"
                                 />
-                            </Typography>
+                            </div>
                         </Box>
                     </Fade>
                 </Modal>
