@@ -21,8 +21,20 @@ export const MovieScroller: React.FC<IMovieScrollerProps> = (props) => {
         <Scroller tabs={tabs} title={title}>
             {items?.map((item) => {
                 const movieCardItem: IMovieCardProps = isTvListItem(item)
-                    ? { id: item.id, title: item.name, date: item.firstAirDate, posterPath: item.posterPath }
-                    : { id: item.id, title: item.title, date: item.releaseDate, posterPath: item.posterPath };
+                    ? {
+                          id: item.id,
+                          title: item.name,
+                          date: item.firstAirDate,
+                          posterPath: item.posterPath,
+                          href: `/tv/${item.id.toString()}`,
+                      }
+                    : {
+                          id: item.id,
+                          title: item.title,
+                          date: item.releaseDate,
+                          posterPath: item.posterPath,
+                          href: `/movie/${item.id.toString()}`,
+                      };
                 return (
                     <MovieCard
                         key={movieCardItem.id}
@@ -30,6 +42,7 @@ export const MovieScroller: React.FC<IMovieScrollerProps> = (props) => {
                         title={movieCardItem.title}
                         date={movieCardItem.date}
                         posterPath={movieCardItem.posterPath}
+                        href={movieCardItem.href}
                     />
                 );
             })}
