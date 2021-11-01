@@ -65,3 +65,8 @@ export interface IVideoItem {
     publishedAt: string;
     id: string;
 }
+
+/** Route param for movie. */
+export interface IIdRouteParam {
+    id: string;
+}
