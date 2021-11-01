@@ -27,15 +27,17 @@ export const MovieCard: React.FC<IMovieCardProps> = (props) => {
                         <img src={`https://www.themoviedb.org/t/p/w440_and_h660_face${posterPath}`} alt={title} />
                     )}
                 </div>
-                <div className={classes.content}>
+            </Link>
+            <div className={classes.content}>
+                <Link to={href}>
                     <Typography className={classes.title} variant="body1">
                         {title}
                     </Typography>
-                    <Typography className={classes.subTitle} variant="body2">
-                        {date}
-                    </Typography>
-                </div>
-            </Link>
+                </Link>
+                <Typography className={classes.subTitle} variant="body2">
+                    {date}
+                </Typography>
+            </div>
         </div>
     );
 };
