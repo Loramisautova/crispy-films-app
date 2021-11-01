@@ -6,4 +6,10 @@ export const APP_ROUTES = {
     EXAMPLES: {
         ASYNC: { PATH: '/examples/async' },
     },
+    MOVIE: {
+        PATH: '/movie/:id',
+    },
+    TV: {
+        PATH: '/tv/:id',
+    },
 };
