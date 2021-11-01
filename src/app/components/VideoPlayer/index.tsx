@@ -14,11 +14,16 @@ interface IVideoPlayerProps {
     videoKey: string;
     width?: number;
     height?: number;
+    autoplay?: boolean;
 }
 
 export const VideoPlayer: React.FC<IVideoPlayerProps> = (props) => {
-    const { isOpen, onClose, title, videoKey, width = 1024, height = 512 } = props;
+    const { isOpen, onClose, title, videoKey, width = 1024, height = 512, autoplay = true } = props;
     const classes = useStyles();
+    let src = `https://www.youtube.com/embed/${videoKey}`;
+    if (autoplay) {
+        src = `${src}?autoplay=1`;
+    }
 
     return (
         <div>
@@ -46,7 +51,7 @@ export const VideoPlayer: React.FC<IVideoPlayerProps> = (props) => {
                                     title={title}
                                     width={width.toString()}
                                     height={height.toString()}
-                                    src={`https://www.youtube.com/embed/${videoKey}`}
+                                    src={src}
                                     frameBorder="0"
                                 />
                             </div>
