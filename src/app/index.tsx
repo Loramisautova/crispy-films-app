@@ -12,9 +12,9 @@ import { APP_ROUTES } from './routes/consts';
 export const App: React.FC = () => (
     <div>
         <Header />
+        <Route component={TvPage} path={APP_ROUTES.TV.PATH} />
         <MainLayout>
             <Switch>
-                <Route component={TvPage} path={APP_ROUTES.TV.PATH} />
                 <Route component={MoviePage} path={APP_ROUTES.MOVIE.PATH} />
                 <Route component={MainPage} path={APP_ROUTES.MAIN.PATH} />
             </Switch>
