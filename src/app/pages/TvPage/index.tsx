@@ -22,6 +22,7 @@ export const TvPage: React.FC = () => {
                     tagline={useGetTvState.data?.tagline}
                     overview={useGetTvState.data?.overview}
                     voteAverage={useGetTvState.data?.voteAverage}
+                    releaseDate={useGetTvState.data?.firstAirDate}
                     // creators={useGetTvState.data?.createdBy}
                 />
             )}

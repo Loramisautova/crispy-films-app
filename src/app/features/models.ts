@@ -27,39 +27,38 @@ export interface IMovieListItem {
     createdBy?: ICreator[];
 }
 
+/** People list item model. */
+export interface IPeopleBase {
+    adult: boolean;
+    gender: number;
+    id?: number;
+    knownForDepartment: string;
+    name: string;
+    originalName: string;
+    popularity: number;
+    profilePath: string;
+    creditId: string;
+}
+
+/** Cast list item model. */
+export interface ICast extends IPeopleBase {
+    id: number;
+    castId: number;
+    character: string;
+    order: number;
+}
+
+/** Crew list item model. */
+export interface ICrew extends IPeopleBase {
+    id: number;
+    department: string;
+    job: string;
+}
+
 /** Movie credit list item model. */
 export interface IMovieCreditList {
-    cast?: [
-        {
-            adult: boolean;
-            gender: number;
-            id?: number;
-            knownForDepartment: string;
-            name: string;
-            originalName: string;
-            popularity: number;
-            profilePath: string;
-            castId: number;
-            character: string;
-            creditId: string;
-            order: number;
-        },
-    ];
-    crew?: [
-        {
-            adult: boolean;
-            gender: number;
-            id: number;
-            knownForDepartment: string;
-            name: string;
-            originalName: string;
-            popularity: number;
-            profilePath: string;
-            creditId: string;
-            department: string;
-            job: string;
-        },
-    ];
+    cast?: ICast[];
+    crew?: ICrew[];
 }
 
 /** TV list item model. */

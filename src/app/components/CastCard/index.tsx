@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { Typography } from '@material-ui/core';
 import classnames from 'classnames';
 
@@ -9,33 +8,28 @@ import { useStyles } from './styles';
 
 export interface IMovieCardProps extends IClassName {
     id?: number;
-    title: string;
-    date: string;
-    posterPath?: string;
-    href: string;
+    name: string;
+    character: string;
+    profilePath?: string;
 }
 
-export const MovieCard: React.FC<IMovieCardProps> = (props) => {
-    const { className, title, date, posterPath, href } = props;
+export const CastCard: React.FC<IMovieCardProps> = (props) => {
+    const { className, name, character, profilePath } = props;
     const classes = useStyles();
 
     return (
         <div className={classnames(classes.root, className)}>
-            <Link to={href}>
-                <div className={classes.image}>
-                    {posterPath && (
-                        <img src={`https://www.themoviedb.org/t/p/w440_and_h660_face${posterPath}`} alt={title} />
-                    )}
-                </div>
-            </Link>
+            <div className={classes.image}>
+                {profilePath && (
+                    <img src={`https://www.themoviedb.org/t/p/w440_and_h660_face${profilePath}`} alt={name} />
+                )}
+            </div>
             <div className={classes.content}>
-                <Link to={href}>
-                    <Typography className={classes.title} variant="body1">
-                        {title}
-                    </Typography>
-                </Link>
+                <Typography className={classes.title} variant="body1">
+                    {name}
+                </Typography>
                 <Typography className={classes.subTitle} variant="body2">
-                    {date}
+                    {character}
                 </Typography>
             </div>
         </div>

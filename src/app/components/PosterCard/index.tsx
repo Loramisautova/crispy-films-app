@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import Typography from '@mui/material/Typography';
-import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
+
+import { ScoreProgress } from '../ScoreProgress';
+import { calcRuntime } from '../../utils/time';
 import { IGenre, ICreator } from '../../features/models';
 
 import { useStyles } from './styles';
@@ -14,23 +16,16 @@ interface IPosterCardProps {
     tagline?: string;
     overview: string;
     voteAverage: number;
+    releaseDate: string;
     // creators: ICreator[];
 }
 
 export const PosterCard: React.FC<IPosterCardProps> = (props) => {
-    const { name, posterPath, genres, runtime, tagline, overview, voteAverage } = props;
+    const { name, posterPath, genres, runtime, tagline, overview, voteAverage, releaseDate } = props;
     const classes = useStyles();
 
-    const calcRuntime = (arr: number[]) => {
-        const runtimeNum = arr[0];
-        const hour = Math.floor(runtimeNum / 60);
-        const minutes = runtimeNum % 60;
-
-        if (runtimeNum === 60) {
-            return `${hour}h`;
-        }
-        return runtimeNum >= 60 ? `${hour}h ${minutes}m` : `${runtimeNum}m`;
-    };
+    const date = releaseDate.substring(0, 4);
+    const runtimeStr = useMemo(() => (runtime && runtime?.length > 0 ? calcRuntime(runtime) : undefined), [runtime]);
 
     return (
         <div className={classes.root}>
@@ -39,13 +34,13 @@ export const PosterCard: React.FC<IPosterCardProps> = (props) => {
             </div>
             <div className={classes.content}>
                 <div className={classes.title}>
-                    <Box sx={{ fontWeight: 'bold' }} className={classes.name}>
+                    <Box className={classes.name}>
                         <h1>{name}</h1>
-                        <h1 className={classes.date}>(2021)</h1>
+                        <h1 className={classes.date}>({date})</h1>
                     </Box>
                     <Box className={classes.facts}>
                         <Typography className={classes.certification}>TV-MA</Typography>
-                        <Box className={classes.genres} ml="8px">
+                        <Box className={classes.genres}>
                             {genres.map((genre, index, arr) => (
                                 <Typography key={genre.id}>
                                     {genre.name}
@@ -53,25 +48,13 @@ export const PosterCard: React.FC<IPosterCardProps> = (props) => {
                                 </Typography>
                             ))}
                         </Box>
-                        {runtime && (
-                            <Typography className={classes.runtime} ml="8px">
-                                {calcRuntime(runtime)}
-                            </Typography>
-                        )}
+                        {runtime && <Typography className={classes.runtime}>{runtimeStr}</Typography>}
                     </Box>
                 </div>
                 <div className={classes.actions}>
                     <div className={classes.chart}>
                         <div className={classes.details}>
-                            <div className={classes.score}>
-                                <Typography className={classes.percent}>{`${voteAverage * 10}%`}</Typography>
-                                <CircularProgress
-                                    className={classes.icon}
-                                    variant="determinate"
-                                    value={voteAverage * 10}
-                                    size="100%"
-                                />
-                            </div>
+                            <ScoreProgress voteAverage={voteAverage} />
                         </div>
                         <div className={classes.text}>
                             <Typography>User</Typography>

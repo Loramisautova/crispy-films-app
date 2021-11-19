@@ -6,7 +6,6 @@ export const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(3),
     },
     poster: {
-        minWidth: '300px',
         width: '300px',
         height: '450px',
     },
@@ -29,6 +28,7 @@ export const useStyles = makeStyles((theme) => ({
         width: '100%',
         margin: '0px',
         padding: '0px',
+        fontWeight: 'bold',
     },
     date: {
         marginLeft: theme.spacing(1),
@@ -42,6 +42,7 @@ export const useStyles = makeStyles((theme) => ({
     },
     genres: {
         display: 'flex',
+        marginLeft: theme.spacing(1),
     },
     runtime: {
         marginLeft: theme.spacing(1),
@@ -58,28 +59,6 @@ export const useStyles = makeStyles((theme) => ({
         backgroundColor: 'hsl(194deg 62% 8%)',
         width: '68px',
         height: '68px',
-    },
-    score: {
-        position: 'relative',
-        display: 'inline-block',
-        width: '100%',
-        height: '100%',
-        textAlign: 'center',
-    },
-    percent: {
-        position: 'relative',
-        width: '100%',
-        height: '100%',
-        // zIndex: '2',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        color: 'hsl(0deg 0% 100%)',
-    },
-    icon: {
-        position: 'absolute',
-        top: '0px',
-        left: '0px',
     },
     circle: {
         color: 'hsl(120deg 100% 25%)',
