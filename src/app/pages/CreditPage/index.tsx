@@ -3,8 +3,9 @@ import { useParams } from 'react-router-dom';
 
 import { CreditCard } from '../../components/CreditCard';
 import { EMediaType } from '../../enums';
-import { IIdRouteParam, IMovieCreditList } from '../../features/models';
-import { useGetCreditsQuery } from '../../features/movies/api';
+import { IIdRouteParam, IMediaCreditList } from '../../features/models';
+import { useGetMovieCreditsQuery } from '../../features/movies/api';
+import { useGetCreditsQuery } from '../../features/tv/api';
 
 import { groupByDepartment, TGroupedCrew } from './utils';
 import { useStyles } from './styles';
@@ -18,21 +19,21 @@ export const CreditPage: React.FC<IProps> = (props) => {
     const classes = useStyles();
     const { id: movieId } = useParams<IIdRouteParam>();
     const [groupedCrew, setGroupedCrew] = useState<TGroupedCrew>({});
-    const useGetCreditsState = useGetCreditsQuery(movieId);
-    const { cast, crew } = useGetCreditsState.data || ({} as IMovieCreditList);
+    const useGetMovieCreditsState = useGetMovieCreditsQuery(movieId);
+    const { cast, crew } = useGetMovieCreditsState.data || ({} as IMediaCreditList);
 
     console.log('##############');
     console.log('type', type);
     console.log('##############');
-    console.log(useGetCreditsState.data?.crew);
+    console.log(useGetMovieCreditsState.data?.crew);
 
     useEffect(() => {
         if (type === EMediaType.MOVIE) {
-            setGroupedCrew(groupByDepartment(useGetCreditsState.data?.crew) || {});
+            setGroupedCrew(groupByDepartment(useGetMovieCreditsState.data?.crew) || {});
         } else {
             // TV.
         }
-    }, [type, useGetCreditsState.data?.crew]);
+    }, [type, useGetMovieCreditsState.data?.crew]);
 
     console.log('##############');
     console.log('groupedCrew', groupedCrew);
@@ -51,7 +52,7 @@ export const CreditPage: React.FC<IProps> = (props) => {
                             </h3>
                         </div>
                         <div>
-                            {useGetCreditsState.data &&
+                            {useGetMovieCreditsState.data &&
                                 cast?.map((actor) => (
                                     <CreditCard
                                         key={`${actor.id}_${actor.character}`}

@@ -17,7 +17,9 @@ export const CastScroller: React.FC<ICastScrollerProps> = (props) => {
     const { items, viewMoreUrl } = props;
     const classes = useStyles();
 
-    console.log(items);
+    console.log('##############');
+    console.log('TV items', items);
+    console.log('##############');
 
     return (
         <div>

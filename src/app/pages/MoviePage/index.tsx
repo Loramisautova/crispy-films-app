@@ -2,19 +2,19 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { CastScroller } from '../../components/CastScroller';
 import { PosterCard } from '../../components/PosterCard';
-import { useGetMovieQuery, useGetCreditsQuery } from '../../features/movies/api';
 
 import { IIdRouteParam, IMovieListItem } from '../../features/models';
+import { useGetMovieCreditsQuery, useGetMovieQuery } from '../../features/movies/api';
 
 export const MoviePage: React.FC = () => {
     const { id: movieId } = useParams<IIdRouteParam>();
     const useGetMovieState = useGetMovieQuery(movieId);
-    const useGetCreditsState = useGetCreditsQuery(movieId);
+    const useGetMovieCreditsState = useGetMovieCreditsQuery(movieId);
     const { title, posterPath, genres, runtime, tagline, overview, voteAverage, releaseDate } =
         useGetMovieState.data || ({} as IMovieListItem);
 
     console.log(useGetMovieState.data);
-    console.log(useGetCreditsState.data?.id);
+    console.log(useGetMovieCreditsState.data?.id);
 
     return (
         <div>
@@ -31,10 +31,10 @@ export const MoviePage: React.FC = () => {
                     // creators={useGetMovieState.data?.createdBy}
                 />
             )}
-            {useGetCreditsState.data && (
+            {useGetMovieCreditsState.data && (
                 <CastScroller
-                    items={useGetCreditsState.data.cast}
-                    viewMoreUrl={`/movie/${useGetCreditsState.data.id}/cast`}
+                    items={useGetMovieCreditsState.data.cast}
+                    viewMoreUrl={`/movie/${useGetMovieCreditsState.data.id}/cast`}
                 />
             )}
         </div>
