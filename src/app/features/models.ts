@@ -57,8 +57,9 @@ export interface ICrew extends IPeopleBase {
 
 /** Movie credit list item model. */
 export interface IMovieCreditList {
-    cast?: ICast[];
-    crew?: ICrew[];
+    id: number;
+    cast: ICast[];
+    crew: ICrew[];
 }
 
 /** TV list item model. */

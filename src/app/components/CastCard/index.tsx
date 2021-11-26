@@ -1,6 +1,9 @@
-import React from 'react';
 import { Typography } from '@material-ui/core';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
 import classnames from 'classnames';
+import React from 'react';
 
 import { IClassName } from '../../models';
 
@@ -9,7 +12,7 @@ import { useStyles } from './styles';
 export interface IMovieCardProps extends IClassName {
     id?: number;
     name: string;
-    character: string;
+    character?: string;
     profilePath?: string;
 }
 

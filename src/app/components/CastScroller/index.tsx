@@ -1,5 +1,6 @@
-import Typography from '@mui/material/Typography';
+import { Typography } from '@material-ui/core';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import { ICast } from '../../features/models';
 import { CastCard } from '../CastCard';
@@ -8,11 +9,12 @@ import { Scroller } from '../Scroller';
 import { useStyles } from './styles';
 
 interface ICastScrollerProps {
-    items?: ICast[];
+    items: ICast[];
+    viewMoreUrl: string;
 }
 
 export const CastScroller: React.FC<ICastScrollerProps> = (props) => {
-    const { items } = props;
+    const { items, viewMoreUrl } = props;
     const classes = useStyles();
 
     console.log(items);
@@ -20,7 +22,7 @@ export const CastScroller: React.FC<ICastScrollerProps> = (props) => {
     return (
         <div>
             <Scroller>
-                {items?.map((item) => (
+                {items?.slice(0, 10).map((item) => (
                     <CastCard
                         className={classes.card}
                         name={item.name}
@@ -28,6 +30,14 @@ export const CastScroller: React.FC<ICastScrollerProps> = (props) => {
                         profilePath={item.profilePath}
                     />
                 ))}
+                <div className={classes.card}>
+                    <Link to={viewMoreUrl} className={classes.cardWrapper}>
+                        <Typography className={classes.moreCard} variant="body1">
+                            View More
+                            <span className={classes.arrow}>&#10142;</span>
+                        </Typography>
+                    </Link>
+                </div>
             </Scroller>
         </div>
     );

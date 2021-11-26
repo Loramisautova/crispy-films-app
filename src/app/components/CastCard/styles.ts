@@ -1,9 +1,10 @@
-import { makeStyles } from '@material-ui/core';
+import { alpha, makeStyles } from '@material-ui/core';
 
 export const useStyles = makeStyles((theme) => ({
     root: {},
     image: {
         width: 150,
+        height: 250,
         '& > img': {
             display: 'inline-block',
             width: '100%',
