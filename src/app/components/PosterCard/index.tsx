@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 
 import { ScoreProgress } from '../ScoreProgress';
 import { calcRuntime } from '../../utils/time';
-import { IGenre, ICreator } from '../../features/models';
+import { IGenre } from '../../features/models';
 
 import { useStyles } from './styles';
 

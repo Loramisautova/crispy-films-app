@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
 import { TMDB_API_BASE_URL } from '../../consts';
 import { transformToCamelCase } from '../../utils/transformToCamelCase';
 import { EAPITag } from '../enums';
-import { IPaginatedMovieList, IMovieListItem, IPeopleBase, ICast, ICrew, IMediaCreditList } from '../models';
+import { IPaginatedMovieList, IMovieListItem, IMediaCreditList } from '../models';
 
 /** TMDB movies api. */
 export const tmdbMoviesApi = createApi({
