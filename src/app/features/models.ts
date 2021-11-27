@@ -21,6 +21,45 @@ export interface IMovieListItem {
     voteAverage: number;
     adult: boolean;
     video: boolean;
+    genres: IGenre[];
+    tagline?: string;
+    runtime: number;
+    createdBy?: ICreator[];
+}
+
+/** People list item model. */
+export interface IPeopleBase {
+    adult: boolean;
+    gender: number;
+    id?: number;
+    knownForDepartment: string;
+    name: string;
+    originalName: string;
+    popularity: number;
+    profilePath: string;
+    creditId: string;
+}
+
+/** Cast list item model. */
+export interface ICast extends IPeopleBase {
+    id: number;
+    castId: number;
+    character: string;
+    order: number;
+}
+
+/** Crew list item model. */
+export interface ICrew extends IPeopleBase {
+    id: number;
+    department: string;
+    job: string;
+}
+
+/** Movie credit list item model. */
+export interface IMediaCreditList {
+    id: number;
+    cast: ICast[];
+    crew: ICrew[];
 }
 
 /** TV list item model. */
@@ -38,6 +77,25 @@ export interface ITVListItem {
     backdropPath?: string;
     voteCount: number;
     voteAverage: number;
+    episodeRunTime: number[];
+    tagline?: string;
+    genres: IGenre[];
+    createdBy?: ICreator[];
+}
+
+/** Array of genres. */
+export interface IGenre {
+    id: number;
+    name: string;
+}
+
+/** Array of creators. */
+export interface ICreator {
+    id: number;
+    creditId: string;
+    name: string;
+    gender: number;
+    profilePath: string;
 }
 
 /** Tv List Item type guard. */

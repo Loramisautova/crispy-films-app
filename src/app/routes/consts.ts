@@ -8,8 +8,14 @@ export const APP_ROUTES = {
     },
     MOVIE: {
         PATH: '/movie/:id',
+        CAST: {
+            PATH: '/movie/:id/cast',
+        },
     },
     TV: {
         PATH: '/tv/:id',
+        CAST: {
+            PATH: '/tv/:id/cast',
+        },
     },
 };

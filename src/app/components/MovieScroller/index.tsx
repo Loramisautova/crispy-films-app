@@ -3,7 +3,7 @@ import React from 'react';
 import { IMovieListItem, isTvListItem, ITVListItem } from '../../features/models';
 
 import { IMovieCardProps, MovieCard } from '../MovieCard';
-import { Scroller, ITabItemProps } from '../Scroller';
+import { ITabItemProps, Scroller } from '../Scroller';
 
 import { useStyles } from './styles';
 
