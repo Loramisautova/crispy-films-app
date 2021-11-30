@@ -1,10 +1,7 @@
 import * as React from 'react';
 import CloseIcon from '@material-ui/icons/Close';
-import Backdrop from '@mui/material/Backdrop';
-import Box from '@mui/material/Box';
-import Fade from '@mui/material/Fade';
-import Modal from '@mui/material/Modal';
-import Typography from '@mui/material/Typography';
+import { Backdrop, Box, Fade, Modal, Typography } from '@material-ui/core';
+
 import { useStyles } from './styles';
 
 interface IVideoPlayerProps {
