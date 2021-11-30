@@ -26,7 +26,7 @@ export const tmdbTvApi = createApi({
             transformResponse: (response: Record<string, unknown>): ITVListItem => transformToCamelCase(response),
             providesTags: (_, __, id) => [{ type: EAPITag.TV, id }],
         }),
-        getCredits: build.query<IMediaCreditList, string>({
+        getTvCredits: build.query<IMediaCreditList, string>({
             query: (tvId) => ({
                 url: `/${tvId}/credits`,
                 params: { api_key: '2982bad10a93c3bc7f2c5245f865294c' },
@@ -37,4 +37,4 @@ export const tmdbTvApi = createApi({
 });
 
 // eslint-disable-next-line @typescript-eslint/unbound-method
-export const { useGetPopularTvQuery, useGetTvQuery, useGetCreditsQuery } = tmdbTvApi;
+export const { useGetPopularTvQuery, useGetTvQuery, useGetTvCreditsQuery } = tmdbTvApi;

@@ -4,17 +4,17 @@ import { CastScroller } from '../../components/CastScroller';
 import { PosterCard } from '../../components/PosterCard';
 
 import { IIdRouteParam, ITVListItem } from '../../features/models';
-import { useGetCreditsQuery, useGetTvQuery } from '../../features/tv/api';
+import { useGetTvCreditsQuery, useGetTvQuery } from '../../features/tv/api';
 
 export const TvPage: React.FC = () => {
     const { id: tvId } = useParams<IIdRouteParam>();
     const useGetTvState = useGetTvQuery(tvId);
-    const useGetCreditsState = useGetCreditsQuery(tvId);
+    const useGetTvCreditsState = useGetTvCreditsQuery(tvId);
     const { name, posterPath, genres, episodeRunTime, tagline, overview, voteAverage, firstAirDate } =
         useGetTvState.data || ({} as ITVListItem);
 
     console.log('##############');
-    console.log('TV Credits', useGetCreditsState.data?.crew);
+    console.log('TV Credits', useGetTvCreditsState.data?.crew);
     console.log('##############');
 
     return (
@@ -32,10 +32,10 @@ export const TvPage: React.FC = () => {
                     // creators={useGetTvState.data?.createdBy}
                 />
             )}
-            {useGetCreditsState.data && (
+            {useGetTvCreditsState.data && (
                 <CastScroller
-                    items={useGetCreditsState.data.cast}
-                    viewMoreUrl={`/tv/${useGetCreditsState.data.id}/cast`}
+                    items={useGetTvCreditsState.data.cast}
+                    viewMoreUrl={`/tv/${useGetTvCreditsState.data.id}/cast`}
                 />
             )}
         </div>
