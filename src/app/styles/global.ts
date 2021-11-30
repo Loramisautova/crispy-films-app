@@ -1,6 +1,5 @@
-import { makeStyles } from '@material-ui/core/styles';
+import { createStyles, makeStyles } from '@material-ui/core/styles';
 import { Theme } from '@material-ui/core/styles/createTheme';
-import { createStyles } from '@material-ui/styles';
 
 export const globalStyles = (theme: Theme) => ({
     layoutSidePadding: {
