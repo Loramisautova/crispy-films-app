@@ -72,10 +72,11 @@ export const useStyles = makeStyles((theme) => ({
     },
     info: {},
     tagline: {
-        marginTop: theme.spacing(1),
         marginBottom: theme.spacing(1),
     },
-    overview: {},
+    overview: {
+        marginTop: theme.spacing(1),
+    },
     people: {
         marginTop: theme.spacing(3),
         display: 'flex',

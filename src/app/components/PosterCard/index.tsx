@@ -1,6 +1,5 @@
 import React, { useMemo } from 'react';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
+import { Box, Typography } from '@material-ui/core';
 
 import { ScoreProgress } from '../ScoreProgress';
 import { calcRuntime } from '../../utils/time';
@@ -63,10 +62,10 @@ export const PosterCard: React.FC<IPosterCardProps> = (props) => {
                     </div>
                 </div>
                 <div className={classes.info}>
-                    <Typography color="text.secondary" gutterBottom>
+                    <Typography className={classes.tagline} color="textSecondary" gutterBottom>
                         {tagline}
                     </Typography>
-                    <Typography className={classes.tagline} variant="h6" gutterBottom component="div">
+                    <Typography variant="h6" gutterBottom component="div">
                         Overview
                     </Typography>
                     <Typography className={classes.overview} gutterBottom component="div">
