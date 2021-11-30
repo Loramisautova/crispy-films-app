@@ -1,4 +1,4 @@
-import Typography from '@mui/material/Typography';
+import { Typography } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
@@ -43,24 +43,24 @@ export const DetailsHeader: React.FC<IProps> = (props) => {
             setDetails(
                 useGetMovieState.data
                     ? {
-                          id: useGetMovieState.data?.id,
-                          title: useGetMovieState.data?.title,
-                          posterPath: useGetMovieState.data?.posterPath,
-                          releaseDate: useGetMovieState.data?.releaseDate,
-                          href: `/movie/${useGetMovieState.data?.id?.toString()}`,
-                      }
+                        id: useGetMovieState.data?.id,
+                        title: useGetMovieState.data?.title,
+                        posterPath: useGetMovieState.data?.posterPath,
+                        releaseDate: useGetMovieState.data?.releaseDate,
+                        href: `/movie/${useGetMovieState.data?.id?.toString()}`,
+                    }
                     : undefined,
             );
         } else {
             setDetails(
                 useGetTvState.data
                     ? {
-                          id: useGetTvState.data?.id,
-                          title: useGetTvState.data?.name,
-                          posterPath: useGetTvState.data?.posterPath,
-                          releaseDate: useGetTvState.data?.firstAirDate,
-                          href: `/tv/${useGetTvState.data?.id?.toString()}`,
-                      }
+                        id: useGetTvState.data?.id,
+                        title: useGetTvState.data?.name,
+                        posterPath: useGetTvState.data?.posterPath,
+                        releaseDate: useGetTvState.data?.firstAirDate,
+                        href: `/tv/${useGetTvState.data?.id?.toString()}`,
+                    }
                     : undefined,
             );
         }
