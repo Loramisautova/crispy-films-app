@@ -1,7 +1,13 @@
 import { makeStyles } from '@material-ui/core';
 
 export const useStyles = makeStyles((theme) => ({
-    root: {},
+    root: {
+        '&:hover': {
+            '& $image': {
+                opacity: 0.8,
+            },
+        },
+    },
     image: {
         width: 150,
         '& > img': {
