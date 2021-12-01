@@ -6,6 +6,9 @@ export const useStyles = makeStyles((theme) => ({
             '& $image': {
                 opacity: 0.8,
             },
+            '& $title': {
+                color: theme.palette.secondary.main,
+            },
         },
     },
     image: {
