@@ -36,7 +36,7 @@ export const CastScroller: React.FC<ICastScrollerProps> = (props) => {
                     <Link to={viewMoreUrl} className={classes.cardWrapper}>
                         <Typography className={classes.moreCard} variant="body1">
                             View More
-                            <span className={classes.arrow}>&#10142;</span>
+                            <span className={classes.arrow}>&#x2192;</span>
                         </Typography>
                     </Link>
                 </div>

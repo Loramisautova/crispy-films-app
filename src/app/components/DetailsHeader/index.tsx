@@ -32,10 +32,6 @@ export const DetailsHeader: React.FC<IProps> = (props) => {
     const useGetMovieState = useGetMovieQuery(movieId);
     const useGetTvState = useGetTvQuery(tvId);
 
-    console.log('##############');
-    console.log('details', details);
-    console.log('##############');
-
     const date = details?.releaseDate.substring(0, 4);
 
     useEffect(() => {
@@ -43,24 +39,24 @@ export const DetailsHeader: React.FC<IProps> = (props) => {
             setDetails(
                 useGetMovieState.data
                     ? {
-                        id: useGetMovieState.data?.id,
-                        title: useGetMovieState.data?.title,
-                        posterPath: useGetMovieState.data?.posterPath,
-                        releaseDate: useGetMovieState.data?.releaseDate,
-                        href: `/movie/${useGetMovieState.data?.id?.toString()}`,
-                    }
+                          id: useGetMovieState.data?.id,
+                          title: useGetMovieState.data?.title,
+                          posterPath: useGetMovieState.data?.posterPath,
+                          releaseDate: useGetMovieState.data?.releaseDate,
+                          href: `/movie/${useGetMovieState.data?.id?.toString()}`,
+                      }
                     : undefined,
             );
         } else {
             setDetails(
                 useGetTvState.data
                     ? {
-                        id: useGetTvState.data?.id,
-                        title: useGetTvState.data?.name,
-                        posterPath: useGetTvState.data?.posterPath,
-                        releaseDate: useGetTvState.data?.firstAirDate,
-                        href: `/tv/${useGetTvState.data?.id?.toString()}`,
-                    }
+                          id: useGetTvState.data?.id,
+                          title: useGetTvState.data?.name,
+                          posterPath: useGetTvState.data?.posterPath,
+                          releaseDate: useGetTvState.data?.firstAirDate,
+                          href: `/tv/${useGetTvState.data?.id?.toString()}`,
+                      }
                     : undefined,
             );
         }
@@ -71,7 +67,7 @@ export const DetailsHeader: React.FC<IProps> = (props) => {
             {details && (
                 <div className={classes.wrapper}>
                     <Link to={details.href}>
-                        <div className={classes.poster}>
+                        <div className={classes.image}>
                             <img
                                 src={`https://www.themoviedb.org/t/p/w58_and_h87_face${details.posterPath}`}
                                 alt={details.title}
@@ -82,14 +78,11 @@ export const DetailsHeader: React.FC<IProps> = (props) => {
                         <Link to={details.href}>
                             <div className={classes.title}>
                                 <Typography variant="h6" gutterBottom component="div">
-                                    {details.title}
-                                </Typography>
-                                <Typography className={classes.date} variant="h6" gutterBottom component="span">
-                                    ({date})
+                                    {details.title} ({date})
                                 </Typography>
                             </div>
                         </Link>
-                        <Link to="/" className={classes.link}>
+                        <Link to={details.href} className={classes.link}>
                             <Typography variant="subtitle1" gutterBottom component="div">
                                 &#x2190; Back to main
                             </Typography>

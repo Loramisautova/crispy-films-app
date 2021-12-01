@@ -1,29 +1,36 @@
 import { makeStyles } from '@material-ui/core';
 import * as Colors from '@material-ui/core/colors';
+import { globalStyles } from '../../styles/global';
 
 export const useStyles = makeStyles((theme) => ({
     root: {
         backgroundColor: Colors.blueGrey['900'],
+        '& $a': {
+            '&:link, &:visited': {
+                color: theme.palette.primary.contrastText,
+                cursor: 'pointer',
+            },
+            '&:hover': {
+                '& $image': {
+                    opacity: 0.8,
+                },
+                color: theme.palette.secondary.main,
+            },
+        },
     },
     wrapper: {
         width: '100%',
         display: 'flex',
-        color: theme.palette.primary.contrastText,
-        padding: theme.spacing(2, 5),
+        padding: theme.spacing(2, 2),
+        ...globalStyles(theme).layoutSidePadding,
     },
-    poster: {
+    image: {
         display: 'flex',
         cursor: 'pointer',
     },
     title: {
         display: 'flex',
         cursor: 'pointer',
-        '&:hover': {
-            color: theme.palette.secondary.main,
-        },
-    },
-    date: {
-        paddingLeft: theme.spacing(0.5),
     },
     content: {
         display: 'flex',
@@ -34,9 +41,5 @@ export const useStyles = makeStyles((theme) => ({
     },
     link: {
         width: '100%',
-        cursor: 'pointer',
-        '&:hover': {
-            color: theme.palette.secondary.main,
-        },
     },
 }));

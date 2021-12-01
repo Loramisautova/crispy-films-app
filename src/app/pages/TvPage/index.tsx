@@ -13,10 +13,6 @@ export const TvPage: React.FC = () => {
     const { name, posterPath, genres, episodeRunTime, tagline, overview, voteAverage, firstAirDate } =
         useGetTvState.data || ({} as ITVListItem);
 
-    console.log('##############');
-    console.log('TV Credits', useGetTvCreditsState.data?.crew);
-    console.log('##############');
-
     return (
         <div>
             {useGetTvState.data && (
