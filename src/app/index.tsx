@@ -1,6 +1,8 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
+import { DetailsHeader } from './components/DetailsHeader';
+
 import { Header } from './components/Header';
 import { EMediaType } from './enums';
 import { MainLayout } from './layouts/MainLayout';
@@ -19,6 +21,14 @@ export const App: React.FC = () => {
     return (
         <div>
             <Header />
+            <Switch>
+                <Route
+                    path={APP_ROUTES.MOVIE.CAST.PATH}
+                    render={() => <DetailsHeader type={EMediaType.MOVIE} />}
+                    exact
+                />
+                <Route path={APP_ROUTES.TV.CAST.PATH} render={() => <DetailsHeader type={EMediaType.TV} />} exact />
+            </Switch>
             <MainLayout>
                 <Switch>
                     <Route component={MoviePage} path={APP_ROUTES.MOVIE.PATH} exact />

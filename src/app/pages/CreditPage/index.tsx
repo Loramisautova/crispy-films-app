@@ -5,7 +5,7 @@ import { CreditCard } from '../../components/CreditCard';
 import { EMediaType } from '../../enums';
 import { IIdRouteParam, IMediaCreditList } from '../../features/models';
 import { useGetMovieCreditsQuery } from '../../features/movies/api';
-import { useGetCreditsQuery } from '../../features/tv/api';
+import { useGetTvCreditsQuery } from '../../features/tv/api';
 
 import { groupByDepartment, TGroupedCrew } from './utils';
 import { useStyles } from './styles';
@@ -17,9 +17,14 @@ interface IProps {
 export const CreditPage: React.FC<IProps> = (props) => {
     const { type } = props;
     const classes = useStyles();
-    const { id: movieId } = useParams<IIdRouteParam>();
     const [groupedCrew, setGroupedCrew] = useState<TGroupedCrew>({});
+
+    const { id: movieId } = useParams<IIdRouteParam>();
+    const { id: tvId } = useParams<IIdRouteParam>();
+
     const useGetMovieCreditsState = useGetMovieCreditsQuery(movieId);
+    const useGetTvCreditsState = useGetTvCreditsQuery(tvId);
+
     const { cast, crew } = useGetMovieCreditsState.data || ({} as IMediaCreditList);
 
     console.log('##############');
@@ -31,9 +36,9 @@ export const CreditPage: React.FC<IProps> = (props) => {
         if (type === EMediaType.MOVIE) {
             setGroupedCrew(groupByDepartment(useGetMovieCreditsState.data?.crew) || {});
         } else {
-            // TV.
+            setGroupedCrew(groupByDepartment(useGetTvCreditsState.data?.crew) || {});
         }
-    }, [type, useGetMovieCreditsState.data?.crew]);
+    }, [type, useGetMovieCreditsState.data?.crew, useGetTvCreditsState.data?.crew]);
 
     console.log('##############');
     console.log('groupedCrew', groupedCrew);
