@@ -39,7 +39,7 @@ export const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
     },
     icon: {
-        color: 'white',
+        color: theme.palette.primary.contrastText,
         fontSize: '4em',
     },
     content: {

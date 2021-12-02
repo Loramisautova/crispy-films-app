@@ -13,9 +13,6 @@ export const MoviePage: React.FC = () => {
     const { title, posterPath, genres, runtime, tagline, overview, voteAverage, releaseDate } =
         useGetMovieState.data || ({} as IMovieListItem);
 
-    console.log(useGetMovieState.data);
-    console.log(useGetMovieCreditsState.data?.id);
-
     return (
         <div>
             {useGetMovieState.data && (

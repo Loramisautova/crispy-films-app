@@ -1,5 +1,7 @@
 import { makeStyles } from '@material-ui/core';
 
+import * as Colors from '@material-ui/core/colors';
+
 export const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
@@ -56,12 +58,9 @@ export const useStyles = makeStyles((theme) => ({
     details: {
         position: 'relative',
         borderRadius: '50%',
-        backgroundColor: 'hsl(194deg 62% 8%)',
+        backgroundColor: Colors.blueGrey['900'],
         width: '68px',
         height: '68px',
-    },
-    circle: {
-        color: 'hsl(120deg 100% 25%)',
     },
     text: {
         marginLeft: theme.spacing(1),
@@ -70,7 +69,6 @@ export const useStyles = makeStyles((theme) => ({
         flexDirection: 'column',
         justifyContent: 'center',
     },
-    info: {},
     tagline: {
         marginBottom: theme.spacing(1),
     },
