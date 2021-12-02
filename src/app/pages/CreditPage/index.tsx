@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { CreditCard } from '../../components/CreditCard';
@@ -27,11 +27,6 @@ export const CreditPage: React.FC<IProps> = (props) => {
 
     const { cast, crew } = useGetMovieCreditsState.data || ({} as IMediaCreditList);
 
-    console.log('##############');
-    console.log('type', type);
-    console.log('##############');
-    console.log(useGetMovieCreditsState.data?.crew);
-
     useEffect(() => {
         if (type === EMediaType.MOVIE) {
             setGroupedCrew(groupByDepartment(useGetMovieCreditsState.data?.crew) || {});
@@ -39,11 +34,6 @@ export const CreditPage: React.FC<IProps> = (props) => {
             setGroupedCrew(groupByDepartment(useGetTvCreditsState.data?.crew) || {});
         }
     }, [type, useGetMovieCreditsState.data?.crew, useGetTvCreditsState.data?.crew]);
-
-    console.log('##############');
-    console.log('groupedCrew', groupedCrew);
-    console.log('object', Object.keys(groupedCrew));
-    console.log('##############');
 
     return (
         <div className={classes.contentWrapper}>
