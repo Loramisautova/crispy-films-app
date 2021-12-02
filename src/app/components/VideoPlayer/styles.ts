@@ -21,7 +21,7 @@ export const useStyles = makeStyles((theme) => ({
         color: theme.palette.primary.contrastText,
     },
     close: {
-        color: theme.palette.primary.contrastText,
+        color: theme.palette.common.white,
         cursor: 'pointer',
     },
     iframe: {

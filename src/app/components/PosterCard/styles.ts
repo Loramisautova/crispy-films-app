@@ -69,7 +69,6 @@ export const useStyles = makeStyles((theme) => ({
         flexDirection: 'column',
         justifyContent: 'center',
     },
-    info: {},
     tagline: {
         marginBottom: theme.spacing(1),
     },
