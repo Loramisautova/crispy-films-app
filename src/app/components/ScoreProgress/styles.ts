@@ -15,14 +15,11 @@ export const useStyles = makeStyles((theme) => ({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        color: 'hsl(0deg 0% 100%)',
+        color: theme.palette.primary.contrastText,
     },
     icon: {
         position: 'absolute',
         top: '0px',
         left: '0px',
-    },
-    circle: {
-        color: 'hsl(120deg 100% 25%)',
     },
 }));

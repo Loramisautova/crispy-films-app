@@ -61,7 +61,7 @@ export const PosterCard: React.FC<IPosterCardProps> = (props) => {
                         </div>
                     </div>
                 </div>
-                <div className={classes.info}>
+                <div>
                     <Typography className={classes.tagline} color="textSecondary" gutterBottom>
                         {tagline}
                     </Typography>
