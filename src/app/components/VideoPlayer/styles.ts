@@ -7,7 +7,7 @@ export const useStyles = makeStyles((theme) => ({
         left: '50%',
         transform: 'translate(-50%, -50%)',
         width: 1024,
-        backgroundColor: 'black',
+        backgroundColor: theme.palette.common.black,
         outline: 'none',
     },
     header: {
@@ -18,10 +18,10 @@ export const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(2),
     },
     title: {
-        color: 'white',
+        color: theme.palette.primary.contrastText,
     },
     close: {
-        color: 'white',
+        color: theme.palette.primary.contrastText,
         cursor: 'pointer',
     },
     iframe: {

@@ -1,7 +1,6 @@
 import { makeStyles } from '@material-ui/core';
 
 export const useStyles = makeStyles((theme) => ({
-    columnWrapper: {},
     contentWrapper: {
         display: 'flex',
         paddingTop: theme.spacing(4),
