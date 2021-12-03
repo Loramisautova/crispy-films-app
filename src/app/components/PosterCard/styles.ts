@@ -1,7 +1,5 @@
 import { makeStyles } from '@material-ui/core';
 
-import * as Colors from '@material-ui/core/colors';
-
 export const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
@@ -54,13 +52,6 @@ export const useStyles = makeStyles((theme) => ({
     },
     chart: {
         display: 'flex',
-    },
-    details: {
-        position: 'relative',
-        borderRadius: '50%',
-        backgroundColor: Colors.blueGrey['900'],
-        width: '68px',
-        height: '68px',
     },
     text: {
         marginLeft: theme.spacing(1),
