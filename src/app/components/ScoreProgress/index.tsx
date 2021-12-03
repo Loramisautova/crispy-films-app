@@ -1,10 +1,8 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { CircularProgress, Typography } from '@material-ui/core';
-
 import classnames from 'classnames';
 
 import { EElementSize } from '../../enums';
-import { getColor } from '../../utils/progress';
 
 import { useStyles } from './styles';
 
@@ -18,7 +16,7 @@ export const ScoreProgress: React.FC<IScoreProgressProps> = (props) => {
     const isSmall = size === EElementSize.SM;
     const classes = useStyles();
 
-    const score = voteAverage * 10;
+    const voteAveragePercentage = voteAverage * 10;
 
     return (
         <div
@@ -27,17 +25,20 @@ export const ScoreProgress: React.FC<IScoreProgressProps> = (props) => {
             })}
         >
             <Typography className={classes.percent} variant={isSmall ? 'caption' : 'body1'}>
-                {`${score}%`}
+                {`${voteAveragePercentage}%`}
             </Typography>
             <CircularProgress
                 classes={{
                     circle: classes.circle,
                 }}
-                className={classes.progress}
+                className={classnames(classes.progress, {
+                    [classes.red]: voteAveragePercentage <= 39,
+                    [classes.yellow]: voteAveragePercentage >= 40 && voteAveragePercentage <= 69,
+                    [classes.green]: voteAveragePercentage >= 70,
+                })}
                 variant="determinate"
-                value={score}
+                value={voteAveragePercentage}
                 size="100%"
-                style={{ color: useMemo(() => getColor(score), [score]) }}
             />
         </div>
     );

@@ -8,15 +8,13 @@ export const useStyles = makeStyles((theme) => ({
         position: 'relative',
         borderRadius: '50%',
         backgroundColor: Colors.blueGrey['900'],
-        border: '4px solid',
-        borderColor: Colors.blueGrey['900'],
+        border: `4px solid ${Colors.blueGrey['900']}`,
     },
     small: {
         '&$score': {
             width: 40,
             height: 40,
-            border: '2px solid',
-            borderColor: Colors.blueGrey['900'],
+            border: `2px solid ${Colors.blueGrey['900']}`,
         },
     },
     percent: {
@@ -34,6 +32,21 @@ export const useStyles = makeStyles((theme) => ({
         // '& > svg': {
         //     color: theme.palette.success.main,
         // },
+    },
+    red: {
+        '&$progress': {
+            color: Colors.red['500'],
+        },
+    },
+    yellow: {
+        '&$progress': {
+            color: Colors.yellow['500'],
+        },
+    },
+    green: {
+        '&$progress': {
+            color: Colors.green['500'],
+        },
     },
     circle: {
         strokeLinecap: 'round',
