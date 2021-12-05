@@ -7,7 +7,7 @@ import { EElementSize } from '../../enums';
 import { useStyles } from './styles';
 
 interface IScoreProgressProps {
-    voteAverage: number;
+    voteAverage?: number;
     size?: EElementSize;
 }
 
@@ -16,7 +16,11 @@ export const ScoreProgress: React.FC<IScoreProgressProps> = (props) => {
     const isSmall = size === EElementSize.SM;
     const classes = useStyles();
 
-    const voteAveragePercentage = voteAverage * 10;
+    const voteAveragePercentage = voteAverage ? voteAverage * 10 : 0;
+
+    console.log('##############');
+    console.log('voteAveragePercentage', voteAveragePercentage);
+    console.log('##############');
 
     return (
         <div
@@ -25,19 +29,20 @@ export const ScoreProgress: React.FC<IScoreProgressProps> = (props) => {
             })}
         >
             <Typography className={classes.percent} variant={isSmall ? 'caption' : 'body1'}>
-                {`${voteAveragePercentage}%`}
+                {voteAveragePercentage === 0 ? 'NR' : `${voteAveragePercentage}%`}
             </Typography>
             <CircularProgress
                 classes={{
                     circle: classes.circle,
                 }}
                 className={classnames(classes.progress, {
-                    [classes.red]: voteAveragePercentage <= 39,
+                    [classes.grey]: voteAveragePercentage === 0,
+                    [classes.red]: voteAveragePercentage > 0 && voteAveragePercentage <= 39,
                     [classes.yellow]: voteAveragePercentage >= 40 && voteAveragePercentage <= 69,
                     [classes.green]: voteAveragePercentage >= 70,
                 })}
                 variant="determinate"
-                value={voteAveragePercentage}
+                value={voteAveragePercentage === 0 ? 100 : voteAveragePercentage}
                 size="100%"
             />
         </div>

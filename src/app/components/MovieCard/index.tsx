@@ -33,11 +33,9 @@ export const MovieCard: React.FC<IMovieCardProps> = (props) => {
                 </div>
             </Link>
             <div className={classes.content}>
-                {voteAverage && (
-                    <div className={classes.score}>
-                        <ScoreProgress voteAverage={voteAverage} size={EElementSize.SM} />
-                    </div>
-                )}
+                <div className={classes.score}>
+                    <ScoreProgress voteAverage={voteAverage} size={EElementSize.SM} />
+                </div>
                 <Link to={href}>
                     <Typography className={classes.title} variant="body1">
                         {title}

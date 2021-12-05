@@ -33,6 +33,11 @@ export const useStyles = makeStyles((theme) => ({
         //     color: theme.palette.success.main,
         // },
     },
+    grey: {
+        '&$progress': {
+            color: Colors.grey['400'],
+        },
+    },
     red: {
         '&$progress': {
             color: Colors.red['500'],
