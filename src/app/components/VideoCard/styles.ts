@@ -1,11 +1,15 @@
 import { makeStyles } from '@material-ui/core';
 
 export const useStyles = makeStyles((theme) => ({
-    root: {},
-    trailer: {
-        minWidth: 300,
+    root: {
         width: 300,
-        height: `calc(300px / 1.78)`,
+        height: 'auto',
+        marginLeft: theme.spacing(3),
+    },
+    video: {
+        // minWidth: 300,
+        // width: 300,
+        // height: `calc(300px / 1.78)`,
     },
     wrapper: {
         // borderRadius: 8,

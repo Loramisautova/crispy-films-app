@@ -18,10 +18,6 @@ export const ScoreProgress: React.FC<IScoreProgressProps> = (props) => {
 
     const voteAveragePercentage = voteAverage ? voteAverage * 10 : 0;
 
-    console.log('##############');
-    console.log('voteAveragePercentage', voteAveragePercentage);
-    console.log('##############');
-
     return (
         <div
             className={classnames(classes.score, {
