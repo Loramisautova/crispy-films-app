@@ -2,28 +2,25 @@ import { makeStyles } from '@material-ui/core';
 
 export const useStyles = makeStyles((theme) => ({
     root: {
-        width: 300,
-        height: 'auto',
-        marginLeft: theme.spacing(3),
+        '&:hover': {
+            '& $image': {
+                opacity: 0.8,
+            },
+            '& $title': {
+                color: theme.palette.secondary.main,
+            },
+        },
     },
     video: {
-        // minWidth: 300,
-        // width: 300,
-        // height: `calc(300px / 1.78)`,
+        width: 300,
+        height: 'auto',
+        marginRight: theme.spacing(3),
     },
     wrapper: {
-        // borderRadius: 8,
-        overflow: 'hidden',
         position: 'relative',
-        top: 0,
-        left: 0,
-        minWidth: '100%',
-        width: '100%',
-        height: '100%',
         cursor: 'pointer',
     },
     image: {
-        maxWidth: 300,
         width: 300,
         height: `calc(300px / 1.78)`,
         '& > img': {
@@ -34,11 +31,11 @@ export const useStyles = makeStyles((theme) => ({
     },
     play: {
         display: 'flex',
-        width: 300,
-        height: `calc(300px / 1.78)`,
         position: 'absolute',
         top: 0,
         left: 0,
+        width: 300,
+        height: `calc(300px / 1.78)`,
         justifyContent: 'center',
         alignItems: 'center',
     },
@@ -47,13 +44,14 @@ export const useStyles = makeStyles((theme) => ({
         fontSize: '4em',
     },
     content: {
-        padding: theme.spacing(1),
         display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
+        flexWrap: 'wrap',
+        justifyContent: 'flex-start',
+        padding: theme.spacing(1),
     },
     title: {
         fontWeight: theme.typography.fontWeightMedium,
+        cursor: 'pointer',
     },
     subTitle: {
         marginTop: theme.spacing(0.3),
