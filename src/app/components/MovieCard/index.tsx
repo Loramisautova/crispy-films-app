@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import { Typography } from '@material-ui/core';
 import classnames from 'classnames';
 
+import { EElementSize } from '../../enums';
+
+import { ScoreProgress } from '../ScoreProgress';
 import { IClassName } from '../../models';
 
 import { useStyles } from './styles';
@@ -13,10 +16,11 @@ export interface IMovieCardProps extends IClassName {
     date: string;
     posterPath?: string;
     href: string;
+    voteAverage?: number;
 }
 
 export const MovieCard: React.FC<IMovieCardProps> = (props) => {
-    const { className, title, date, posterPath, href } = props;
+    const { className, title, date, posterPath, href, voteAverage } = props;
     const classes = useStyles();
 
     return (
@@ -29,6 +33,9 @@ export const MovieCard: React.FC<IMovieCardProps> = (props) => {
                 </div>
             </Link>
             <div className={classes.content}>
+                <div className={classes.score}>
+                    <ScoreProgress voteAverage={voteAverage} size={EElementSize.SM} />
+                </div>
                 <Link to={href}>
                     <Typography className={classes.title} variant="body1">
                         {title}

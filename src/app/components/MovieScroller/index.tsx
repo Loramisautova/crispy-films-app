@@ -27,6 +27,7 @@ export const MovieScroller: React.FC<IMovieScrollerProps> = (props) => {
                           date: item.firstAirDate,
                           posterPath: item.posterPath,
                           href: `/tv/${item.id.toString()}`,
+                          voteAverage: item.voteAverage,
                       }
                     : {
                           id: item.id,
@@ -34,6 +35,7 @@ export const MovieScroller: React.FC<IMovieScrollerProps> = (props) => {
                           date: item.releaseDate,
                           posterPath: item.posterPath,
                           href: `/movie/${item.id.toString()}`,
+                          voteAverage: item.voteAverage,
                       };
                 return (
                     <MovieCard
@@ -43,6 +45,7 @@ export const MovieScroller: React.FC<IMovieScrollerProps> = (props) => {
                         date={movieCardItem.date}
                         posterPath={movieCardItem.posterPath}
                         href={movieCardItem.href}
+                        voteAverage={movieCardItem.voteAverage}
                     />
                 );
             })}

@@ -25,6 +25,9 @@ export const useStyles = makeStyles((theme) => ({
     title: {
         fontWeight: theme.typography.fontWeightMedium,
     },
+    score: {
+        marginTop: theme.spacing(-5),
+    },
     subTitle: {
         marginTop: theme.spacing(0.3),
         color: theme.palette.grey[600],

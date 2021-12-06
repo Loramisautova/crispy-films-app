@@ -26,7 +26,7 @@ export const VideoCard: React.FC<IVideoCardProps> = (props) => {
 
     return (
         <div className={classnames(classes.root, className)}>
-            <div className={classes.trailer}>
+            <div className={classes.video}>
                 <div className={classes.wrapper} onClick={() => setIsOpen(true)}>
                     <div className={classes.image}>
                         {videoKey && <img src={`https://img.youtube.com/vi/${videoKey}/hqdefault.jpg`} alt={title} />}

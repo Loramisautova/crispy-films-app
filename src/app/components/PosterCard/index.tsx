@@ -52,9 +52,7 @@ export const PosterCard: React.FC<IPosterCardProps> = (props) => {
                 </div>
                 <div className={classes.actions}>
                     <div className={classes.chart}>
-                        <div className={classes.details}>
-                            <ScoreProgress voteAverage={voteAverage} />
-                        </div>
+                        <ScoreProgress voteAverage={voteAverage} />
                         <div className={classes.text}>
                             <Typography>User</Typography>
                             <Typography>Score</Typography>
