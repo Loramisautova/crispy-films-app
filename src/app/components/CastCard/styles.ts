@@ -13,6 +13,7 @@ export const useStyles = makeStyles((theme) => ({
     userImage: {
         width: 150,
         height: 225,
+        backgroundColor: '#C5C5C5',
     },
     content: {
         padding: theme.spacing(1),
