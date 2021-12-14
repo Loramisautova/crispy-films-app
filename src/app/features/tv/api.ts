@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
 import { TMDB_API_BASE_URL } from '../../consts';
 import { transformToCamelCase } from '../../utils/transformToCamelCase';
 import { EAPITag } from '../enums';
-import { IMediaCreditList, IPaginatedTvList, ITVListItem } from '../models';
+import { IMediaCreditList, IPaginatedTvList, ITVCast, ITVListItem } from '../models';
 
 /** TMDB tv api. */
 export const tmdbTvApi = createApi({
@@ -28,10 +28,21 @@ export const tmdbTvApi = createApi({
         }),
         getTvCredits: build.query<IMediaCreditList, string>({
             query: (tvId) => ({
-                url: `/${tvId}/credits`,
+                url: `/${tvId}/aggregate_credits`,
                 params: { api_key: '2982bad10a93c3bc7f2c5245f865294c' },
             }),
-            transformResponse: (response: Record<string, unknown>): IMediaCreditList => transformToCamelCase(response),
+            transformResponse: (response: Record<string, unknown>): IMediaCreditList => {
+                const data = transformToCamelCase<IMediaCreditList<ITVCast>>(response);
+
+                return {
+                    id: data.id,
+                    cast: data.cast.map((c) => ({
+                        ...c,
+                        character: c.roles?.map((r) => r.character).join(', '),
+                    })),
+                    crew: data.crew,
+                };
+            },
         }),
     }),
 });

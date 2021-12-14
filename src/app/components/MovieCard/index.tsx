@@ -3,10 +3,11 @@ import { Link } from 'react-router-dom';
 import { Typography } from '@material-ui/core';
 import classnames from 'classnames';
 
+import { getFormattedDate } from '../../utils/date';
 import { EElementSize } from '../../enums';
+import { IClassName } from '../../models';
 
 import { ScoreProgress } from '../ScoreProgress';
-import { IClassName } from '../../models';
 
 import { useStyles } from './styles';
 
@@ -42,7 +43,7 @@ export const MovieCard: React.FC<IMovieCardProps> = (props) => {
                     </Typography>
                 </Link>
                 <Typography className={classes.subTitle} variant="body2">
-                    {date}
+                    {getFormattedDate(date)}
                 </Typography>
             </div>
         </div>

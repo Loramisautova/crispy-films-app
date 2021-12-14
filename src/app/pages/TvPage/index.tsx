@@ -25,7 +25,6 @@ export const TvPage: React.FC = () => {
                     overview={overview}
                     voteAverage={voteAverage}
                     releaseDate={firstAirDate}
-                    // creators={useGetTvState.data?.createdBy}
                 />
             )}
             {useGetTvCreditsState.data && (

@@ -5,23 +5,26 @@ import React from 'react';
 import { IClassName } from '../../models';
 
 import { useStyles } from './styles';
+import { ReactComponent as User } from '../../assets/user.svg';
 
-export interface IMovieCardProps extends IClassName {
+export interface ICastCardProps extends IClassName {
     id?: number;
     name: string;
     character?: string;
     profilePath?: string;
 }
 
-export const CastCard: React.FC<IMovieCardProps> = (props) => {
+export const CastCard: React.FC<ICastCardProps> = (props) => {
     const { className, name, character, profilePath } = props;
     const classes = useStyles();
 
     return (
         <div className={classnames(classes.root, className)}>
             <div className={classes.image}>
-                {profilePath && (
+                {profilePath?.length ? (
                     <img src={`https://www.themoviedb.org/t/p/w440_and_h660_face${profilePath}`} alt={name} />
+                ) : (
+                    <User className={classes.userImage} />
                 )}
             </div>
             <div className={classes.content}>

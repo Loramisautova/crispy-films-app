@@ -3,7 +3,9 @@ import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import classnames from 'classnames';
 import React from 'react';
 
+import { getFormattedDate } from '../../utils/date';
 import { IClassName } from '../../models';
+
 import { VideoPlayer } from '../VideoPlayer';
 
 import { useStyles } from './styles';
@@ -35,16 +37,16 @@ export const VideoCard: React.FC<IVideoCardProps> = (props) => {
                         <PlayArrowIcon className={classes.icon} />
                     </div>
                 </div>
+                <div className={classes.content}>
+                    <Typography className={classes.title} variant="body1">
+                        {title}
+                    </Typography>
+                    <Typography className={classes.subTitle} variant="body2">
+                        {getFormattedDate(date)}
+                    </Typography>
+                </div>
+                <VideoPlayer isOpen={isOpen} onClose={handleClose} title={title} videoKey={videoKey} />
             </div>
-            <div className={classes.content}>
-                <Typography className={classes.title} variant="body1">
-                    {title}
-                </Typography>
-                <Typography className={classes.subTitle} variant="body2">
-                    {date}
-                </Typography>
-            </div>
-            <VideoPlayer isOpen={isOpen} onClose={handleClose} title={title} videoKey={videoKey} />
         </div>
     );
 };
