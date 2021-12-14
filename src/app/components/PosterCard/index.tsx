@@ -1,9 +1,11 @@
 import React, { useMemo } from 'react';
 import { Box, Typography } from '@material-ui/core';
 
-import { ScoreProgress } from '../ScoreProgress';
 import { calcRuntime } from '../../utils/time';
 import { IGenre } from '../../features/models';
+
+import { ScoreProgress } from '../ScoreProgress';
+import { CertificationChip } from '../CertificationChip';
 
 import { useStyles } from './styles';
 
@@ -18,6 +20,8 @@ interface IPosterCardProps {
     releaseDate: string;
     // creators: ICreator[];
 }
+
+const certification = 'TV-14';
 
 export const PosterCard: React.FC<IPosterCardProps> = (props) => {
     const { name, posterPath, genres, runtime, tagline, overview, voteAverage, releaseDate } = props;
@@ -38,7 +42,9 @@ export const PosterCard: React.FC<IPosterCardProps> = (props) => {
                         <h1 className={classes.date}>({date})</h1>
                     </Box>
                     <Box className={classes.facts}>
-                        <Typography className={classes.certification}>TV-MA</Typography>
+                        <Typography className={classes.certification}>
+                            <CertificationChip certificationChip={certification} />
+                        </Typography>
                         <Box className={classes.genres}>
                             {genres.map((genre, index, arr) => (
                                 <Typography key={genre.id}>
@@ -47,15 +53,17 @@ export const PosterCard: React.FC<IPosterCardProps> = (props) => {
                                 </Typography>
                             ))}
                         </Box>
-                        {runtime && <Typography className={classes.runtime}>{runtimeStr}</Typography>}
+                        {runtime && <Typography>&bull; {runtimeStr}</Typography>}
                     </Box>
                 </div>
                 <div className={classes.actions}>
                     <div className={classes.chart}>
                         <ScoreProgress voteAverage={voteAverage} />
                         <div className={classes.text}>
-                            <Typography>User</Typography>
-                            <Typography>Score</Typography>
+                            <Typography component="div" variant="subtitle2">
+                                User <br />
+                                Score
+                            </Typography>
                         </div>
                     </div>
                 </div>
@@ -66,7 +74,7 @@ export const PosterCard: React.FC<IPosterCardProps> = (props) => {
                     <Typography variant="h6" gutterBottom component="div">
                         Overview
                     </Typography>
-                    <Typography className={classes.overview} gutterBottom component="div">
+                    <Typography className={classes.overview} gutterBottom component="div" variant="body2">
                         {overview}
                     </Typography>
                     <div className={classes.people}>
