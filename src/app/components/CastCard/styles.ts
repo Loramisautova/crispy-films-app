@@ -10,6 +10,10 @@ export const useStyles = makeStyles((theme) => ({
             height: '100%',
         },
     },
+    userImage: {
+        width: 150,
+        height: 225,
+    },
     content: {
         padding: theme.spacing(1),
     },

@@ -29,9 +29,9 @@ export interface IMovieListItem {
 
 /** People list item model. */
 export interface IPeopleBase {
+    id: number;
     adult: boolean;
     gender: number;
-    id?: number;
     knownForDepartment: string;
     name: string;
     originalName: string;
@@ -43,9 +43,19 @@ export interface IPeopleBase {
 /** Cast list item model. */
 export interface ICast extends IPeopleBase {
     id: number;
-    castId: number;
-    character: string;
     order: number;
+    character: string;
+}
+
+export interface IRole {
+    creditId: string;
+    character: string;
+    episodeCount: number;
+}
+
+export interface ITVCast extends ICast {
+    roles: IRole[];
+    totalEpisodeCount: number;
 }
 
 /** Crew list item model. */
@@ -55,11 +65,11 @@ export interface ICrew extends IPeopleBase {
     job: string;
 }
 
-/** Movie credit list item model. */
-export interface IMediaCreditList {
+/** Media credit list item model. */
+export interface IMediaCreditList<TCast = ICast, TCrew = ICrew> {
     id: number;
-    cast: ICast[];
-    crew: ICrew[];
+    cast: TCast[];
+    crew: TCrew[];
 }
 
 /** TV list item model. */

@@ -26,8 +26,6 @@ export const VideoCard: React.FC<IVideoCardProps> = (props) => {
         setIsOpen(false);
     };
 
-    const dateStr = date.substring(0, 10);
-
     return (
         <div className={classnames(classes.root, className)}>
             <div className={classes.video}>
@@ -44,7 +42,7 @@ export const VideoCard: React.FC<IVideoCardProps> = (props) => {
                         {title}
                     </Typography>
                     <Typography className={classes.subTitle} variant="body2">
-                        {getFormattedDate(dateStr)}
+                        {getFormattedDate(date)}
                     </Typography>
                 </div>
                 <VideoPlayer isOpen={isOpen} onClose={handleClose} title={title} videoKey={videoKey} />
