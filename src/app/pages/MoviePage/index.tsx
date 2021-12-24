@@ -1,21 +1,40 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
-import { CastScroller } from '../../components/CastScroller';
-import { PosterCard } from '../../components/PosterCard';
 
 import { IIdRouteParam, IMovieListItem } from '../../features/models';
 import { useGetMovieCreditsQuery, useGetMovieQuery } from '../../features/movies/api';
 
+import { CastScroller } from '../../components/CastScroller';
+import { PosterCard } from '../../components/PosterCard';
+import { MovieFacts } from '../../components/MovieFacts';
+import { filterCrewByJobs } from '../../utils/filterCrewByJobs';
+
+import { useStyles } from './styles';
+
 export const MoviePage: React.FC = () => {
+    const classes = useStyles();
     const { id: movieId } = useParams<IIdRouteParam>();
     const useGetMovieState = useGetMovieQuery(movieId);
     const useGetMovieCreditsState = useGetMovieCreditsQuery(movieId);
-    const { title, posterPath, genres, runtime, tagline, overview, voteAverage, releaseDate } =
-        useGetMovieState.data || ({} as IMovieListItem);
+    const {
+        title,
+        posterPath,
+        genres,
+        runtime,
+        tagline,
+        overview,
+        voteAverage,
+        releaseDate,
+        status,
+        originalLanguage,
+        budget,
+        revenue,
+    } = useGetMovieState.data || ({} as IMovieListItem);
 
-    console.log('##############');
-    console.log('useGetMovieCreditsState.data.cast', useGetMovieCreditsState.data?.cast);
-    console.log('##############');
+    const filteredCrew = useMemo(
+        () => filterCrewByJobs(useGetMovieCreditsState.data?.crew, ['Director', 'Screenplay', 'Characters', 'Writer']),
+        [useGetMovieCreditsState.data?.crew],
+    );
 
     return (
         <div>
@@ -29,15 +48,29 @@ export const MoviePage: React.FC = () => {
                     overview={overview}
                     voteAverage={voteAverage}
                     releaseDate={releaseDate}
-                    // creators={useGetMovieState.data?.createdBy}
+                    creators={filteredCrew}
                 />
             )}
-            {useGetMovieCreditsState.data && (
-                <CastScroller
-                    items={useGetMovieCreditsState.data.cast}
-                    viewMoreUrl={`/movie/${useGetMovieCreditsState.data.id}/cast`}
-                />
-            )}
+            <div className={classes.wrapper}>
+                <>
+                    {useGetMovieCreditsState.data && (
+                        <CastScroller
+                            items={useGetMovieCreditsState.data.cast}
+                            viewMoreUrl={`/movie/${useGetMovieCreditsState.data.id}/cast`}
+                        />
+                    )}
+                </>
+                <>
+                    {useGetMovieState.data && (
+                        <MovieFacts
+                            status={status}
+                            originalLanguage={originalLanguage}
+                            budget={budget}
+                            revenue={revenue}
+                        />
+                    )}
+                </>
+            </div>
         </div>
     );
 };

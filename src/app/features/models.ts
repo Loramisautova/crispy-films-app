@@ -25,6 +25,16 @@ export interface IMovieListItem {
     tagline?: string;
     runtime: number;
     createdBy?: ICreator[];
+    status: string;
+    budget: number;
+    revenue: number;
+}
+
+/** Languages list */
+export interface ILanguagesItem {
+    iso6391: string;
+    englishName: string;
+    name: string;
 }
 
 /** People list item model. */
@@ -65,6 +75,12 @@ export interface ICrew extends IPeopleBase {
     job: string;
 }
 
+/** Crew list filtered by job . */
+export interface ICrewFilteredByJob {
+    name: string;
+    jobs: string[];
+}
+
 /** Media credit list item model. */
 export interface IMediaCreditList<TCast = ICast, TCrew = ICrew> {
     id: number;
@@ -89,8 +105,19 @@ export interface ITVListItem {
     voteAverage: number;
     episodeRunTime: number[];
     tagline?: string;
+    status: string;
+    type: string;
+    networks: INetwork[];
     genres: IGenre[];
     createdBy?: ICreator[];
+}
+
+/** Array of networks. */
+export interface INetwork {
+    name: string;
+    id: number;
+    logoPath: string | null;
+    originCountry: string;
 }
 
 /** Array of genres. */
