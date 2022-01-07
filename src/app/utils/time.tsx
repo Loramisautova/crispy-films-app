@@ -1,3 +1,4 @@
+/** Formatted runtime */
 export const calcRuntime = (arr: number[]) => {
     const runtimeNum = arr[0];
     let result = '';

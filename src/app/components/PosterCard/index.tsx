@@ -9,6 +9,11 @@ import { CertificationChip } from '../CertificationChip';
 
 import { useStyles } from './styles';
 
+interface ICreatorItem {
+    name: string;
+    jobs: string[];
+}
+
 interface IPosterCardProps {
     posterPath?: string;
     name: string;
@@ -18,13 +23,13 @@ interface IPosterCardProps {
     overview: string;
     voteAverage: number;
     releaseDate: string;
-    // creators: ICreator[];
+    creators?: ICreatorItem[];
 }
 
 const certification = 'TV-14';
 
 export const PosterCard: React.FC<IPosterCardProps> = (props) => {
-    const { name, posterPath, genres, runtime, tagline, overview, voteAverage, releaseDate } = props;
+    const { name, posterPath, genres, runtime, tagline, overview, voteAverage, releaseDate, creators } = props;
     const classes = useStyles();
 
     const date = releaseDate.substring(0, 4);
@@ -78,7 +83,12 @@ export const PosterCard: React.FC<IPosterCardProps> = (props) => {
                         {overview}
                     </Typography>
                     <div className={classes.people}>
-                        <div className={classes.profile}>Profile</div>
+                        {creators?.map((creator) => (
+                            <div className={classes.profile}>
+                                <div className={classes.profileTitle}>{creator.name}</div>
+                                <div className={classes.profileSubtitle}>{creator.jobs}</div>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </div>
