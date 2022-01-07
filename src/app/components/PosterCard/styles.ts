@@ -1,4 +1,5 @@
 import { makeStyles } from '@material-ui/core';
+import * as Colors from '@material-ui/core/colors';
 
 export const useStyles = makeStyles((theme) => ({
     root: {
@@ -25,26 +26,28 @@ export const useStyles = makeStyles((theme) => ({
     },
     name: {
         display: 'flex',
+        '& > h1': {
+            marginTop: 0,
+            marginBottom: 0,
+        },
         width: '100%',
-        margin: '0px',
-        padding: '0px',
-        fontWeight: 'bold',
     },
     date: {
         marginLeft: theme.spacing(1),
+        fontWeight: theme.typography.fontWeightLight,
+        color: Colors.grey[600],
     },
     facts: {
         display: 'flex',
+        alignItems: 'center',
         width: '100%',
     },
     certification: {
         marginRight: theme.spacing(1),
+        color: Colors.grey[800],
     },
     genres: {
         display: 'flex',
-        marginLeft: theme.spacing(1),
-    },
-    runtime: {
         marginLeft: theme.spacing(1),
     },
     actions: {
@@ -56,6 +59,7 @@ export const useStyles = makeStyles((theme) => ({
     text: {
         marginLeft: theme.spacing(1),
         display: 'flex',
+        flexWrap: 'wrap',
         alignItems: 'flex-start',
         flexDirection: 'column',
         justifyContent: 'center',
