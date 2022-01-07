@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { CastScroller } from '../../components/CastScroller';
@@ -28,12 +28,16 @@ export const TvPage: React.FC = () => {
         createdBy,
     } = useGetTvState.data || ({} as ITVListItem);
 
-    const filteredCrew = createdBy?.map((c) => {
-        return {
-            name: c.name,
-            jobs: ['Creator'],
-        };
-    });
+    const filteredCrew = useMemo(
+        () =>
+            createdBy?.map((c) => {
+                return {
+                    name: c.name,
+                    jobs: ['Creator'],
+                };
+            }),
+        [createdBy],
+    );
 
     return (
         <div>

@@ -1,5 +1,6 @@
 import { ICrew, ICrewFilteredByJob } from '../features/models';
 
+/** Crew filtered by jobs */
 export const filterCrewByJobs = (crew: ICrew[] | undefined, jobTitles: string[]): ICrewFilteredByJob[] =>
     crew?.reduce<ICrewFilteredByJob[]>((result, curr) => {
         if (jobTitles.includes(curr.job)) {

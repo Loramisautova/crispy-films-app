@@ -1,6 +1,6 @@
 import { IVideoItem } from './features/models';
 
-/** Applicationname */
+/** Application name */
 export const APP_NAME = 'Crispy Films';
 
 /** Base API prefix. */

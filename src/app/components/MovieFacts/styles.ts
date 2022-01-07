@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/core';
 
 export const useStyles = makeStyles((theme) => ({
-    wrapper: {
+    section: {
         marginBottom: theme.spacing(2),
     },
     title: {

@@ -23,22 +23,21 @@ export const TvFacts: React.FC<ITvFactsProps> = (props) => {
 
     return (
         <FactsCard>
-            <div className={classes.wrapper}>
+            <div className={classes.section}>
                 <Typography className={classes.title}> Status </Typography>
                 <Typography className={classes.subTitle}>{status}</Typography>
             </div>
-            <div className={classes.wrapper}>
+            <div className={classes.section}>
                 <Typography className={classes.title}> Network </Typography>
-                {networks &&
-                    networks.map((network) => (
-                        <img alt={network.name} src={`https://www.themoviedb.org/t/p/h30/${network.logoPath}`} />
-                    ))}
+                {networks?.map((network) => (
+                    <img alt={network.name} src={`https://www.themoviedb.org/t/p/h30/${network.logoPath}`} />
+                ))}
             </div>
-            <div className={classes.wrapper}>
+            <div className={classes.section}>
                 <Typography className={classes.title}> Type </Typography>
                 <Typography className={classes.subTitle}>{type}</Typography>
             </div>
-            <div className={classes.wrapper}>
+            <div className={classes.section}>
                 <Typography className={classes.title}> Original Language </Typography>
                 <Typography className={classes.subTitle}>{language}</Typography>
             </div>
