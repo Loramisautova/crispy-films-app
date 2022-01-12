@@ -6,11 +6,14 @@ import { TRAILERS } from '../../consts';
 import { useGetPopularMoviesQuery, usePrefetch as usePopularMoviesPrefetch } from '../../features/movies/api';
 import { useGetTrendingQuery, usePrefetch as useTrendingPrefetch } from '../../features/trending/api';
 import { useGetPopularTvQuery } from '../../features/tv/api';
+import { SearchBar } from '../../components/SearchBar';
+import { useStyles } from './styles';
 
 export const MainPage: React.FC = () => {
     const [trendingTab, setTrendingTab] = useState('day');
     const [popularTab, setPopularTab] = useState('tv');
     const isTvTabSelected = popularTab === 'tv';
+    const classes = useStyles();
 
     const useGetPopularTvState = useGetPopularTvQuery();
     const useGetPopularMoviesState = useGetPopularMoviesQuery(undefined, { skip: isTvTabSelected });
@@ -25,6 +28,9 @@ export const MainPage: React.FC = () => {
 
     return (
         <div>
+            <div className={classes.searchSection}>
+                <SearchBar />
+            </div>
             <MovieScroller
                 items={popularResults}
                 title="What's Popular"

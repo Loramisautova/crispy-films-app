@@ -18,4 +18,7 @@ export const APP_ROUTES = {
             PATH: '/tv/:id/cast',
         },
     },
+    SEARCH: {
+        PATH: '/search',
+    },
 };

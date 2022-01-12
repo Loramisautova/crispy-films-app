@@ -7,7 +7,7 @@ import { Header } from './components/Header';
 import { EMediaType } from './enums';
 import { MainLayout } from './layouts/MainLayout';
 import { CreditPage } from './pages/CreditPage';
-import { MainPage } from './pages/Main';
+import { MainPage } from './pages/MainPage';
 import { MoviePage } from './pages/MoviePage';
 import { TvPage } from './pages/TvPage';
 import { APP_ROUTES } from './routes/consts';
