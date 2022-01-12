@@ -4,11 +4,10 @@ import { Route, Switch } from 'react-router-dom';
 import { DetailsHeader } from './components/DetailsHeader';
 
 import { Header } from './components/Header';
-import { SearchBar } from './components/SearchBar';
 import { EMediaType } from './enums';
 import { MainLayout } from './layouts/MainLayout';
 import { CreditPage } from './pages/CreditPage';
-import { MainPage } from './pages/Main';
+import { MainPage } from './pages/MainPage';
 import { MoviePage } from './pages/MoviePage';
 import { TvPage } from './pages/TvPage';
 import { APP_ROUTES } from './routes/consts';
@@ -22,7 +21,6 @@ export const App: React.FC = () => {
     return (
         <div>
             <Header />
-            <SearchBar />
             <Switch>
                 <Route
                     path={APP_ROUTES.MOVIE.CAST.PATH}

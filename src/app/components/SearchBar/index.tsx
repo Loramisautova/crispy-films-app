@@ -1,28 +1,36 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import InputBase from '@material-ui/core/InputBase';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import { Typography } from '@material-ui/core';
-import { Link } from 'react-router-dom';
+import * as qs from 'qs';
+
+import { APP_ROUTES } from '../../routes/consts';
 
 import { useStyles } from './styles';
 
 export const SearchBar = () => {
     const classes = useStyles();
     const [value, setValue] = useState('');
+    const history = useHistory();
 
-    const handleInput = () => {
-        console.log('##############');
-        console.log('value', value);
-        console.log('##############');
+    const handleSearch = (e: React.MouseEvent<unknown>) => {
+        e.preventDefault();
+
+        if (value) {
+            const queryString = qs.stringify({ q: value });
+
+            history.push(`${APP_ROUTES.SEARCH.PATH}?${queryString}`);
+        }
     };
 
     return (
-        <div className={classes.searchSection}>
+        <div>
             <Typography variant="h3" className={classes.title} gutterBottom component="div">
                 Welcome.
             </Typography>
-            <Typography variant="subtitle1" className={classes.subTitle} gutterBottom component="div">
+            <Typography variant="h6" className={classes.subTitle} gutterBottom component="div">
                 Navigate the world of Crispy Films by exploring films, tv shows and people.
             </Typography>
             <Paper component="form" className={classes.search}>
@@ -31,13 +39,16 @@ export const SearchBar = () => {
                     className={classes.textField}
                     value={value}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => setValue(e.target.value)}
-                    inputProps={{ 'aria-label': 'search google maps' }}
+                    inputProps={{ 'aria-label': 'Search Film, TV Show and People' }}
                 />
-                <Link to={`/search?q=${value}`}>
-                    <Button type="submit" className={classes.searchBtn} onClick={handleInput} aria-label="search">
-                        Search
-                    </Button>
-                </Link>
+                <Button
+                    type="submit"
+                    className={classes.searchBtn}
+                    onClick={(e) => handleSearch(e)}
+                    aria-label="search"
+                >
+                    Search
+                </Button>
             </Paper>
         </div>
     );
