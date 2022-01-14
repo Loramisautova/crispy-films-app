@@ -4,6 +4,7 @@ import { setupListeners } from '@reduxjs/toolkit/query/react';
 import { tmdbMoviesApi } from './features/movies/api';
 import { tmdbTrendingApi } from './features/trending/api';
 import { tmdbTvApi } from './features/tv/api';
+import { tmdbSearchApi } from './features/search/api';
 
 /** Configure store. */
 export const store = configureStore({
@@ -11,6 +12,7 @@ export const store = configureStore({
         [tmdbMoviesApi.reducerPath]: tmdbMoviesApi.reducer,
         [tmdbTrendingApi.reducerPath]: tmdbTrendingApi.reducer,
         [tmdbTvApi.reducerPath]: tmdbTvApi.reducer,
+        [tmdbSearchApi.reducerPath]: tmdbSearchApi.reducer,
     },
     /**
      * Adding the api middleware enables caching, invalidation, polling,
