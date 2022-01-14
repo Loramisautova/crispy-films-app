@@ -10,6 +10,7 @@ import { CreditPage } from './pages/CreditPage';
 import { MainPage } from './pages/MainPage';
 import { MoviePage } from './pages/MoviePage';
 import { TvPage } from './pages/TvPage';
+import { SearchPage } from './pages/SearchPage';
 import { APP_ROUTES } from './routes/consts';
 
 import { globalUseStyles } from './styles/global';
@@ -39,6 +40,7 @@ export const App: React.FC = () => {
                         exact
                     />
                     <Route path={APP_ROUTES.TV.CAST.PATH} render={() => <CreditPage type={EMediaType.TV} />} exact />
+                    <Route component={SearchPage} path={APP_ROUTES.SEARCH.PATH} exact />
                     <Route component={MainPage} path={APP_ROUTES.MAIN.PATH} />
                 </Switch>
             </MainLayout>
