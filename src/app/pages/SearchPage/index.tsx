@@ -9,7 +9,7 @@ export const SearchPage = () => {
     const [query, queryState] = useLazySearchQuery();
     const { data } = queryState;
 
-    const searchQuery = useMemo(() => qs.parse(search, { ignoreQueryPrefix: true })?.q, [search]);
+    const searchQuery = useMemo(() => qs.parse(search, { ignoreQueryPrefix: true })?.q?.toString(), [search]);
 
     useEffect(() => {
         if (searchQuery !== undefined) {

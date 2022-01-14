@@ -5,12 +5,6 @@ export interface IPaginatedData<T> extends IPagination {
     results: T;
 }
 
-/** Search list item model. */
-export interface ISearch {
-    page: number;
-    results: any;
-}
-
 /** Movie list item model. */
 export interface IMovieListItem {
     id: number;

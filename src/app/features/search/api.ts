@@ -1,10 +1,9 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
-import { ParsedQs } from 'qs';
 
 import { TMDB_API_BASE_URL } from '../../consts';
 import { transformToCamelCase } from '../../utils/transformToCamelCase';
 import { EAPITag } from '../enums';
-import { IPaginatedData, ISearch } from '../models';
+import { IPaginatedData } from '../models';
 
 /** TMDB Search API. */
 export const tmdbSearchApi = createApi({
@@ -14,7 +13,7 @@ export const tmdbSearchApi = createApi({
     }),
     tagTypes: [EAPITag.SEARCH],
     endpoints: (build) => ({
-        search: build.query<IPaginatedData<ISearch>, string | ParsedQs | string[] | ParsedQs[]>({
+        search: build.query<IPaginatedData<any>, string>({
             query: (q) => {
                 return {
                     url: '/multi',
@@ -24,7 +23,7 @@ export const tmdbSearchApi = createApi({
                     },
                 };
             },
-            transformResponse: (response: Record<string, unknown>): IPaginatedData<ISearch> =>
+            transformResponse: (response: Record<string, unknown>): IPaginatedData<any> =>
                 transformToCamelCase(response),
         }),
     }),
