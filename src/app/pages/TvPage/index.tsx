@@ -4,11 +4,12 @@ import { useParams } from 'react-router-dom';
 import { CastScroller } from '../../components/CastScroller';
 import { PosterCard } from '../../components/PosterCard';
 import { TvFacts } from '../../components/TvFacts';
-
 import { IIdRouteParam, ITVListItem } from '../../features/models';
 import { useGetTvCreditsQuery, useGetTvQuery } from '../../features/tv/api';
+import { useStyles } from '../MoviePage/styles';
 
 export const TvPage: React.FC = () => {
+    const classes = useStyles();
     const { id: tvId } = useParams<IIdRouteParam>();
     const useGetTvState = useGetTvQuery(tvId);
     const useGetTvCreditsState = useGetTvCreditsQuery(tvId);
@@ -40,7 +41,7 @@ export const TvPage: React.FC = () => {
     );
 
     return (
-        <div>
+        <div className={classes.root}>
             {useGetTvState.data && (
                 <PosterCard
                     name={name}

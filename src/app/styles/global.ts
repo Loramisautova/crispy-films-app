@@ -3,9 +3,10 @@ import { Theme } from '@material-ui/core/styles/createTheme';
 
 export const globalStyles = (theme: Theme) => ({
     layoutSidePadding: {
-        paddingLeft: theme.spacing(24),
-        paddingRight: theme.spacing(24),
+        paddingLeft: theme.spacing(8),
+        paddingRight: theme.spacing(8),
     },
+    pagePadding: theme.spacing(3, 0),
 });
 
 export const globalUseStyles = makeStyles((theme) =>
