@@ -9,7 +9,10 @@ import { PosterCard } from '../../components/PosterCard';
 import { MovieFacts } from '../../components/MovieFacts';
 import { filterCrewByJobs } from '../../utils/filterCrewByJobs';
 
+import { useStyles } from './styles';
+
 export const MoviePage: React.FC = () => {
+    const classes = useStyles();
     const { id: movieId } = useParams<IIdRouteParam>();
     const useGetMovieState = useGetMovieQuery(movieId);
     const useGetMovieCreditsState = useGetMovieCreditsQuery(movieId);
@@ -34,7 +37,7 @@ export const MoviePage: React.FC = () => {
     );
 
     return (
-        <div>
+        <div className={classes.root}>
             {useGetMovieState.data && (
                 <PosterCard
                     name={title}

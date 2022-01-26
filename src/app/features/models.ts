@@ -75,10 +75,27 @@ export interface ICrew extends IPeopleBase {
     job: string;
 }
 
-/** Crew list filtered by job . */
+/** Crew list filtered by job. */
 export interface ICrewFilteredByJob {
     name: string;
     jobs: string[];
+}
+/** Results list filtered by type. */
+export interface IResultsFilteredByType {
+    posterPath: string | null;
+    adult: boolean;
+    overview: string;
+    releaseDate: string;
+    originalTitle: string;
+    id: number;
+    mediaType: string;
+    originalLanguage: string;
+    title: string;
+    backdropPath: string | null;
+    popularity: number;
+    voteCount: number;
+    video: boolean;
+    voteAverage: number;
 }
 
 /** Media credit list item model. */

@@ -4,7 +4,6 @@ import * as Colors from '@material-ui/core/colors';
 export const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
-        padding: theme.spacing(3, 0),
     },
     poster: {
         width: '300px',
@@ -14,12 +13,12 @@ export const useStyles = makeStyles((theme) => ({
         display: 'flex',
         flexWrap: 'wrap',
         paddingLeft: theme.spacing(5),
+        flexDirection: 'column',
         alignItems: 'flex-start',
         alignContent: 'center',
         boxSizing: 'border-box',
     },
     title: {
-        width: '100%',
         display: 'flex',
         flexWrap: 'wrap',
         marginBottom: theme.spacing(3),
