@@ -17,14 +17,18 @@ export const SearchPage = () => {
 
     const searchQuery = useMemo(() => qs.parse(search, { ignoreQueryPrefix: true })?.q?.toString(), [search]);
 
-    const filterResultsByType = (type: string): IResultsFilteredByType[] =>
-        data?.results.reduce((result: IResultsFilteredByType[], curr: IResultsFilteredByType) => {
-            if (curr.mediaType === type) {
-                result.push(curr);
-            }
+    const filterResultsByType = useMemo(
+        () =>
+            (type: string): IResultsFilteredByType[] =>
+                data?.results.reduce((result: IResultsFilteredByType[], curr: IResultsFilteredByType) => {
+                    if (curr.mediaType === type) {
+                        result.push(curr);
+                    }
 
-            return result;
-        }, []);
+                    return result;
+                }, []),
+        [data?.results],
+    );
 
     useEffect(() => {
         if (searchQuery !== undefined) {
