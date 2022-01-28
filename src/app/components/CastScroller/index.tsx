@@ -18,25 +18,23 @@ export const CastScroller: React.FC<ICastScrollerProps> = (props) => {
     const classes = useStyles();
 
     return (
-        <div>
-            <Scroller>
-                {items?.slice(0, 10).map((item) => (
-                    <CastCard
-                        className={classes.card}
-                        name={item.name}
-                        character={item.character}
-                        profilePath={item.profilePath}
-                    />
-                ))}
-                <div className={classes.card}>
-                    <Link to={viewMoreUrl} className={classes.cardWrapper}>
-                        <Typography className={classes.moreCard} variant="body1">
-                            View More
-                            <span className={classes.arrow}>&#x2192;</span>
-                        </Typography>
-                    </Link>
-                </div>
-            </Scroller>
-        </div>
+        <Scroller className={classes.root}>
+            {items?.slice(0, 10).map((item) => (
+                <CastCard
+                    className={classes.card}
+                    name={item.name}
+                    character={item.character}
+                    profilePath={item.profilePath}
+                />
+            ))}
+            <div className={classes.card}>
+                <Link to={viewMoreUrl} className={classes.cardWrapper}>
+                    <Typography className={classes.moreCard} variant="body1">
+                        View More
+                        <span className={classes.arrow}>&#x2192;</span>
+                    </Typography>
+                </Link>
+            </div>
+        </Scroller>
     );
 };

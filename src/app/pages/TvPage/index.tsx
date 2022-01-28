@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
+import { Grid } from '@material-ui/core';
 
 import { CastScroller } from '../../components/CastScroller';
 import { PosterCard } from '../../components/PosterCard';
@@ -41,29 +42,35 @@ export const TvPage: React.FC = () => {
     );
 
     return (
-        <div className={classes.root}>
-            {useGetTvState.data && (
-                <PosterCard
-                    name={name}
-                    posterPath={posterPath}
-                    genres={genres}
-                    runtime={episodeRunTime}
-                    tagline={tagline}
-                    overview={overview}
-                    voteAverage={voteAverage}
-                    releaseDate={firstAirDate}
-                    creators={filteredCrew}
-                />
-            )}
-            <div>
-                {useGetTvCreditsState.data && (
-                    <CastScroller
-                        items={useGetTvCreditsState.data.cast}
-                        viewMoreUrl={`/tv/${useGetTvCreditsState.data.id}/cast`}
+        <Grid className={classes.root}>
+            <Grid item xs={12} className={classes.sectionPoster}>
+                {useGetTvState.data && (
+                    <PosterCard
+                        name={name}
+                        posterPath={posterPath}
+                        genres={genres}
+                        runtime={episodeRunTime}
+                        tagline={tagline}
+                        overview={overview}
+                        voteAverage={voteAverage}
+                        releaseDate={firstAirDate}
+                        creators={filteredCrew}
                     />
                 )}
-                <TvFacts status={status} networks={networks} type={type} originalLanguage={originalLanguage} />
-            </div>
-        </div>
+            </Grid>
+            <Grid container item spacing={3}>
+                <Grid item xs={9}>
+                    {useGetTvCreditsState.data && (
+                        <CastScroller
+                            items={useGetTvCreditsState.data.cast}
+                            viewMoreUrl={`/tv/${useGetTvCreditsState.data.id}/cast`}
+                        />
+                    )}
+                </Grid>
+                <Grid item xs={2}>
+                    <TvFacts status={status} networks={networks} type={type} originalLanguage={originalLanguage} />
+                </Grid>
+            </Grid>
+        </Grid>
     );
 };
