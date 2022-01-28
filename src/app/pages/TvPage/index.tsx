@@ -5,7 +5,7 @@ import { CastScroller } from '../../components/CastScroller';
 import { PosterCard } from '../../components/PosterCard';
 import { TvFacts } from '../../components/TvFacts';
 import { IIdRouteParam, ITVListItem } from '../../features/models';
-import { useGetTvCreditsQuery, useGetTvQuery } from '../../features/tv/api';
+import { useGetTvCreditsQuery, useGetTvQuery, useGetTvRecommendationsQuery } from '../../features/tv/api';
 import { useStyles } from '../MoviePage/styles';
 
 export const TvPage: React.FC = () => {
@@ -13,6 +13,7 @@ export const TvPage: React.FC = () => {
     const { id: tvId } = useParams<IIdRouteParam>();
     const useGetTvState = useGetTvQuery(tvId);
     const useGetTvCreditsState = useGetTvCreditsQuery(tvId);
+    const useGetTvRecommendationsState = useGetTvRecommendationsQuery(tvId);
     const {
         name,
         posterPath,
@@ -28,6 +29,10 @@ export const TvPage: React.FC = () => {
         networks,
         createdBy,
     } = useGetTvState.data || ({} as ITVListItem);
+
+    console.log('##############');
+    console.log('useGetTvRecommendationsState', useGetTvRecommendationsState.data);
+    console.log('##############');
 
     const filteredCrew = useMemo(
         () =>

@@ -2,12 +2,13 @@ import React, { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { IIdRouteParam, IMovieListItem } from '../../features/models';
-import { useGetMovieCreditsQuery, useGetMovieQuery } from '../../features/movies/api';
+import { useGetMovieCreditsQuery, useGetMovieQuery, useGetMovieRecommendationsQuery } from '../../features/movies/api';
 
 import { CastScroller } from '../../components/CastScroller';
 import { PosterCard } from '../../components/PosterCard';
 import { MovieFacts } from '../../components/MovieFacts';
 import { filterCrewByJobs } from '../../utils/filterCrewByJobs';
+import { RecommendationScroller } from '../../components/RecomendationScroller';
 
 import { useStyles } from './styles';
 
@@ -16,6 +17,7 @@ export const MoviePage: React.FC = () => {
     const { id: movieId } = useParams<IIdRouteParam>();
     const useGetMovieState = useGetMovieQuery(movieId);
     const useGetMovieCreditsState = useGetMovieCreditsQuery(movieId);
+    const useGetMovieRecommendationsState = useGetMovieRecommendationsQuery(movieId);
     const {
         title,
         posterPath,
@@ -30,6 +32,10 @@ export const MoviePage: React.FC = () => {
         budget,
         revenue,
     } = useGetMovieState.data || ({} as IMovieListItem);
+
+    console.log('##############');
+    console.log('useGetMovieRecommendationsState', useGetMovieRecommendationsState.data);
+    console.log('##############');
 
     const filteredCrew = useMemo(
         () => filterCrewByJobs(useGetMovieCreditsState.data?.crew, ['Director', 'Screenplay', 'Characters', 'Writer']),
@@ -68,6 +74,11 @@ export const MoviePage: React.FC = () => {
                             budget={budget}
                             revenue={revenue}
                         />
+                    )}
+                </>
+                <>
+                    {useGetMovieRecommendationsState.data && (
+                        <RecommendationScroller recommendations={useGetMovieRecommendationsState.data.results} />
                     )}
                 </>
             </div>

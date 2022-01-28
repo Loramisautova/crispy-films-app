@@ -5,6 +5,29 @@ export interface IPaginatedData<T> extends IPagination {
     results: T;
 }
 
+export interface IRecommendationsList {
+    page: number;
+    results: IRecommendation[];
+    totalPages: number;
+    totalResults: number;
+}
+
+export interface IRecommendation {
+    posterPath: string | null;
+    adult: boolean;
+    overview: string;
+    releaseDate: string;
+    genreIds: number[];
+    id: number;
+    originalTitle: string;
+    title: string;
+    backdropPath: string;
+    popularity: number;
+    voteCount: number;
+    video: boolean;
+    voteAverage: number;
+}
+
 /** Movie list item model. */
 export interface IMovieListItem {
     id: number;
