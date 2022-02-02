@@ -39,8 +39,8 @@ export const MoviePage: React.FC = () => {
 
     return (
         <Grid container className={classes.root}>
-            <Grid item xs={12} className={classes.sectionPoster}>
-                {useGetMovieState.data && (
+            {useGetMovieState.data && (
+                <div className={classes.sectionPoster}>
                     <PosterCard
                         name={title}
                         posterPath={posterPath}
@@ -52,8 +52,8 @@ export const MoviePage: React.FC = () => {
                         releaseDate={releaseDate}
                         creators={filteredCrew}
                     />
-                )}
-            </Grid>
+                </div>
+            )}
             <Grid container item spacing={3}>
                 <Grid item xs={9}>
                     {useGetMovieCreditsState.data && (

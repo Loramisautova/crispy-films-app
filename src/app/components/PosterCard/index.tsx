@@ -77,13 +77,15 @@ export const PosterCard: React.FC<IPosterCardProps> = (props) => {
                         {tagline}
                     </Typography>
                     {overview && (
-                        <Typography variant="h6" gutterBottom component="div">
-                            Overview
-                        </Typography>
+                        <>
+                            <Typography variant="h6" gutterBottom component="div">
+                                Overview
+                            </Typography>
+                            <Typography className={classes.overview} gutterBottom component="div" variant="body2">
+                                {overview}
+                            </Typography>
+                        </>
                     )}
-                    <Typography className={classes.overview} gutterBottom component="div" variant="body2">
-                        {overview}
-                    </Typography>
                     <div className={classes.people}>
                         {creators?.map((creator) => (
                             <div className={classes.profile}>

@@ -43,8 +43,8 @@ export const TvPage: React.FC = () => {
 
     return (
         <Grid className={classes.root}>
-            <Grid item xs={12} className={classes.sectionPoster}>
-                {useGetTvState.data && (
+            {useGetTvState.data && (
+                <div className={classes.sectionPoster}>
                     <PosterCard
                         name={name}
                         posterPath={posterPath}
@@ -56,8 +56,8 @@ export const TvPage: React.FC = () => {
                         releaseDate={firstAirDate}
                         creators={filteredCrew}
                     />
-                )}
-            </Grid>
+                </div>
+            )}
             <Grid container item spacing={3}>
                 <Grid item xs={9}>
                     {useGetTvCreditsState.data && (
@@ -67,7 +67,7 @@ export const TvPage: React.FC = () => {
                         />
                     )}
                 </Grid>
-                <Grid item xs={2}>
+                <Grid item xs={3}>
                     <TvFacts status={status} networks={networks} type={type} originalLanguage={originalLanguage} />
                 </Grid>
             </Grid>
