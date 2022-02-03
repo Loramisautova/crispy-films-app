@@ -1,5 +1,6 @@
 import React from 'react';
 import { Tab, Tabs, Typography } from '@material-ui/core';
+import classnames from 'classnames';
 
 import { useStyles } from './styles';
 
@@ -12,10 +13,11 @@ export interface ITabItemProps {
 interface IScrollerProps {
     title?: string;
     tabs?: ITabItemProps[];
+    className?: string;
 }
 
 export const Scroller: React.FC<IScrollerProps> = (props) => {
-    const { title, tabs, children } = props;
+    const { title, tabs, children, className } = props;
     const classes = useStyles();
     const [selectedTab, setSelectedTab] = React.useState(0);
 
@@ -24,7 +26,7 @@ export const Scroller: React.FC<IScrollerProps> = (props) => {
     };
 
     return (
-        <div className={classes.root}>
+        <div className={classnames(classes.root, className)}>
             <div className={classes.header}>
                 <Typography className={classes.headerTitle} variant="h5">
                     {title}
