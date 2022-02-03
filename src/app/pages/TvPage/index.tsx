@@ -42,7 +42,7 @@ export const TvPage: React.FC = () => {
     );
 
     return (
-        <Grid className={classes.root}>
+        <div className={classes.root}>
             {useGetTvState.data && (
                 <div className={classes.sectionPoster}>
                     <PosterCard
@@ -71,6 +71,6 @@ export const TvPage: React.FC = () => {
                     <TvFacts status={status} networks={networks} type={type} originalLanguage={originalLanguage} />
                 </Grid>
             </Grid>
-        </Grid>
+        </div>
     );
 };

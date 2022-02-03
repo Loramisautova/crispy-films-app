@@ -38,7 +38,7 @@ export const MoviePage: React.FC = () => {
     );
 
     return (
-        <Grid container className={classes.root}>
+        <div className={classes.root}>
             {useGetMovieState.data && (
                 <div className={classes.sectionPoster}>
                     <PosterCard
@@ -74,6 +74,6 @@ export const MoviePage: React.FC = () => {
                     )}
                 </Grid>
             </Grid>
-        </Grid>
+        </div>
     );
 };
