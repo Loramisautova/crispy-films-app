@@ -5,27 +5,36 @@ export interface IPaginatedData<T> extends IPagination {
     results: T;
 }
 
-export interface IRecommendationsList {
+export interface IRecommendationsBase {
     page: number;
-    results: IRecommendation[];
     totalPages: number;
     totalResults: number;
+    results: IRecommendationItemBase[];
 }
 
-export interface IRecommendation {
+export interface IRecommendationItemBase {
     posterPath: string | null;
-    adult: boolean;
-    overview: string;
-    releaseDate: string;
-    genreIds: number[];
-    id: number;
-    originalTitle: string;
-    title: string;
-    backdropPath: string;
     popularity: number;
-    voteCount: number;
-    video: boolean;
+    id: number;
+    backdropPath: string | null;
+    adult: boolean;
     voteAverage: number;
+    overview: string;
+    genreIds: number[];
+    voteCount: number;
+    originalTitle: string;
+}
+
+export interface IMovieRecommendationItemBase extends IRecommendationItemBase {
+    title: string;
+    releaseDate: string;
+    video: boolean;
+}
+
+export interface ITvRecommendationItemBase extends IRecommendationItemBase {
+    name: string;
+    firstAirDate: string;
+    originCountry: string[];
 }
 
 /** Movie list item model. */

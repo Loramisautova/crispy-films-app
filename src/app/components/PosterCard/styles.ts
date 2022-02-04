@@ -15,7 +15,7 @@ export const useStyles = makeStyles((theme) => ({
         paddingLeft: theme.spacing(5),
         flexDirection: 'column',
         alignItems: 'flex-start',
-        alignContent: 'center',
+        justifyContent: 'center',
         boxSizing: 'border-box',
     },
     title: {

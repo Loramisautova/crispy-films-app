@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
+import { Grid } from '@material-ui/core';
 
 import { IIdRouteParam, IMovieListItem } from '../../features/models';
 import { useGetMovieCreditsQuery, useGetMovieQuery, useGetMovieRecommendationsQuery } from '../../features/movies/api';
@@ -33,10 +34,6 @@ export const MoviePage: React.FC = () => {
         revenue,
     } = useGetMovieState.data || ({} as IMovieListItem);
 
-    console.log('##############');
-    console.log('useGetMovieRecommendationsState', useGetMovieRecommendationsState.data);
-    console.log('##############');
-
     const filteredCrew = useMemo(
         () => filterCrewByJobs(useGetMovieCreditsState.data?.crew, ['Director', 'Screenplay', 'Characters', 'Writer']),
         [useGetMovieCreditsState.data?.crew],
@@ -45,28 +42,35 @@ export const MoviePage: React.FC = () => {
     return (
         <div className={classes.root}>
             {useGetMovieState.data && (
-                <PosterCard
-                    name={title}
-                    posterPath={posterPath}
-                    genres={genres}
-                    runtime={[runtime]}
-                    tagline={tagline}
-                    overview={overview}
-                    voteAverage={voteAverage}
-                    releaseDate={releaseDate}
-                    creators={filteredCrew}
-                />
+                <div className={classes.sectionPoster}>
+                    <PosterCard
+                        name={title}
+                        posterPath={posterPath}
+                        genres={genres}
+                        runtime={[runtime]}
+                        tagline={tagline}
+                        overview={overview}
+                        voteAverage={voteAverage}
+                        releaseDate={releaseDate}
+                        creators={filteredCrew}
+                    />
+                </div>
             )}
-            <div>
-                <>
+            <Grid container item spacing={3}>
+                <Grid item xs={9}>
                     {useGetMovieCreditsState.data && (
                         <CastScroller
                             items={useGetMovieCreditsState.data.cast}
                             viewMoreUrl={`/movie/${useGetMovieCreditsState.data.id}/cast`}
                         />
                     )}
-                </>
-                <>
+                    <div>
+                        {useGetMovieRecommendationsState.data && (
+                            <RecommendationScroller recommendations={useGetMovieRecommendationsState.data.results} />
+                        )}
+                    </div>
+                </Grid>
+                <Grid item xs={3}>
                     {useGetMovieState.data && (
                         <MovieFacts
                             status={status}
@@ -75,13 +79,8 @@ export const MoviePage: React.FC = () => {
                             revenue={revenue}
                         />
                     )}
-                </>
-                <>
-                    {useGetMovieRecommendationsState.data && (
-                        <RecommendationScroller recommendations={useGetMovieRecommendationsState.data.results} />
-                    )}
-                </>
-            </div>
+                </Grid>
+            </Grid>
         </div>
     );
 };

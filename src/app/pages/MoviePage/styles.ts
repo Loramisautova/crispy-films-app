@@ -6,4 +6,7 @@ export const useStyles = makeStyles((theme) => ({
     root: {
         padding: globalStyles(theme).pagePadding,
     },
+    sectionPoster: {
+        paddingBottom: theme.spacing(3),
+    },
 }));
