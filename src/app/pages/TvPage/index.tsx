@@ -75,7 +75,7 @@ export const TvPage: React.FC = () => {
                     )}
 
                     <div>
-                        {useGetTvRecommendationsState.data && (
+                        {useGetTvRecommendationsState.data?.results?.length && (
                             <RecommendationScroller recommendations={useGetTvRecommendationsState.data.results} />
                         )}
                     </div>

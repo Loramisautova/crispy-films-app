@@ -5,11 +5,12 @@ import { transformToCamelCase } from '../../utils/transformToCamelCase';
 import { EAPITag } from '../enums';
 import {
     IMediaCreditList,
+    IPaginatedData,
     IPaginatedTvList,
-    IRecommendation,
-    IRecommendationsList,
+    IRecommendations,
     ITVCast,
     ITVListItem,
+    ITvRecommendationItem,
 } from '../models';
 
 /** TMDB tv api. */
@@ -51,22 +52,21 @@ export const tmdbTvApi = createApi({
                 };
             },
         }),
-        getTvRecommendations: build.query<IRecommendationsList, string>({
+        getTvRecommendations: build.query<IPaginatedData<IRecommendations>, string>({
             query: (tvId) => ({
                 url: `/${tvId}/recommendations`,
                 params: { api_key: '2982bad10a93c3bc7f2c5245f865294c' },
             }),
-            transformResponse: (response: Record<string, unknown>): IRecommendationsList => {
-                const data = transformToCamelCase<IRecommendationsList>(response);
+            transformResponse: (response: Record<string, unknown>): IPaginatedData<IRecommendations> => {
+                const data = transformToCamelCase<IPaginatedData<ITvRecommendationItem>>(response);
 
                 return {
-                    page: data.page,
-                    results: data.results.map((r) => ({
-                        ...r,
-                        releaseDate: data.firstAirDate,
+                    ...data,
+                    results: data.results.map((item) => ({
+                        ...item,
+                        title: item.name || item.originalTitle,
+                        date: item.firstAirDate,
                     })),
-                    totalPages: data.totalPages,
-                    totalResults: data.totalResults,
                 };
             },
         }),

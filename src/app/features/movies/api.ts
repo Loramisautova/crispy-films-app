@@ -7,8 +7,9 @@ import {
     IPaginatedMovieList,
     IMovieListItem,
     IMediaCreditList,
-    IRecommendationsList,
-    IMovieRecommendationsListItem,
+    IPaginatedData,
+    IMovieRecommendationItem,
+    IRecommendations,
 } from '../models';
 
 /** TMDB movies api. */
@@ -40,13 +41,22 @@ export const tmdbMoviesApi = createApi({
             }),
             transformResponse: (response: Record<string, unknown>): IMediaCreditList => transformToCamelCase(response),
         }),
-        getMovieRecommendations: build.query<IMovieRecommendationsListItem, string>({
+        getMovieRecommendations: build.query<IPaginatedData<IRecommendations>, string>({
             query: (movieId) => ({
                 url: `/${movieId}/recommendations`,
                 params: { api_key: '2982bad10a93c3bc7f2c5245f865294c' },
             }),
-            transformResponse: (response: Record<string, unknown>): IMovieRecommendationsListItem =>
-                transformToCamelCase(response),
+            transformResponse: (response: Record<string, unknown>): IPaginatedData<IRecommendations> => {
+                const data = transformToCamelCase<IPaginatedData<IMovieRecommendationItem>>(response);
+
+                return {
+                    ...data,
+                    results: data.results.map((item) => ({
+                        ...item,
+                        date: item.releaseDate,
+                    })),
+                };
+            },
         }),
     }),
 });

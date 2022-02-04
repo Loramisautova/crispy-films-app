@@ -2,16 +2,12 @@ import { IPagination } from '../models';
 
 /** Paginated data generic model. */
 export interface IPaginatedData<T> extends IPagination {
-    results: T;
+    results: T[];
 }
 
-export interface IRecommendationsBase {
-    page: number;
-    totalPages: number;
-    totalResults: number;
-    results: IRecommendationItemBase[];
-}
-
+/**
+ * Общая модель рекомендаций с сервера.
+ */
 export interface IRecommendationItemBase {
     posterPath: string | null;
     popularity: number;
@@ -25,16 +21,30 @@ export interface IRecommendationItemBase {
     originalTitle: string;
 }
 
-export interface IMovieRecommendationItemBase extends IRecommendationItemBase {
+/**
+ * Модель для рекомендаций фильмов с сервера.
+ */
+export interface IMovieRecommendationItem extends IRecommendationItemBase {
     title: string;
     releaseDate: string;
     video: boolean;
 }
 
-export interface ITvRecommendationItemBase extends IRecommendationItemBase {
+/**
+ * Модель для рекомендаций тв с сервера.
+ */
+export interface ITvRecommendationItem extends IRecommendationItemBase {
     name: string;
     firstAirDate: string;
     originCountry: string[];
+}
+
+/**
+ * Общая модель для рекомендаций для хранения в стейте приложения.
+ */
+export interface IRecommendations extends IRecommendationItemBase {
+    title: string;
+    date: string;
 }
 
 /** Movie list item model. */
@@ -193,10 +203,10 @@ export const isMovieListItem = (item: ITVListItem | IMovieListItem): item is IMo
     (item as IMovieListItem).title !== undefined || (item as IMovieListItem).releaseDate !== undefined;
 
 /** Movie list model. */
-export interface IPaginatedMovieList extends IPaginatedData<IMovieListItem[]> {}
+export interface IPaginatedMovieList extends IPaginatedData<IMovieListItem> {}
 
 /** Tv list model. */
-export interface IPaginatedTvList extends IPaginatedData<ITVListItem[]> {}
+export interface IPaginatedTvList extends IPaginatedData<ITVListItem> {}
 
 /** Video item model. */
 export interface IVideoItem {

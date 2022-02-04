@@ -65,7 +65,7 @@ export const MoviePage: React.FC = () => {
                         />
                     )}
                     <div>
-                        {useGetMovieRecommendationsState.data && (
+                        {useGetMovieRecommendationsState.data?.results?.length && (
                             <RecommendationScroller recommendations={useGetMovieRecommendationsState.data.results} />
                         )}
                     </div>

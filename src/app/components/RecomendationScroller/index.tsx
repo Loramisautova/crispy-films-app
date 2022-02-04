@@ -1,13 +1,13 @@
 import React from 'react';
 import { Typography } from '@material-ui/core';
 
-import { IMovieRecommendation } from '../../features/models';
+import { IRecommendations } from '../../features/models';
 import { RecommendationCard } from '../RecommendationCard';
 import { Scroller } from '../Scroller';
 import { useStyles } from './styles';
 
 interface IRecommendationScrollerProps {
-    recommendations: IMovieRecommendation[];
+    recommendations: IRecommendations[];
 }
 
 export const RecommendationScroller: React.FC<IRecommendationScrollerProps> = (props) => {
@@ -25,7 +25,7 @@ export const RecommendationScroller: React.FC<IRecommendationScrollerProps> = (p
                         backdropPath={recommendation.backdropPath}
                         title={recommendation.title}
                         voteAverage={recommendation.voteAverage}
-                        releaseDate={recommendation.releaseDate}
+                        releaseDate={recommendation.date}
                     />
                 ))}
             </Scroller>
