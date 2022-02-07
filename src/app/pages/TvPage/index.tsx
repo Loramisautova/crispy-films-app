@@ -33,10 +33,6 @@ export const TvPage: React.FC = () => {
         createdBy,
     } = useGetTvState.data || ({} as ITVListItem);
 
-    console.log('##############');
-    console.log('useGetTvRecommendationsState.data', useGetTvRecommendationsState.data);
-    console.log('##############');
-
     const filteredCrew = useMemo(
         () =>
             createdBy?.map((c) => {
