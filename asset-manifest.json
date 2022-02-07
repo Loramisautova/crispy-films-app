@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.js": "/crispy-films-app/static/js/main.a0087319.chunk.js",
+    "main.js.map": "/crispy-films-app/static/js/main.a0087319.chunk.js.map",
+    "runtime-main.js": "/crispy-films-app/static/js/runtime-main.191e7638.js",
+    "runtime-main.js.map": "/crispy-films-app/static/js/runtime-main.191e7638.js.map",
+    "static/css/2.679831fc.chunk.css": "/crispy-films-app/static/css/2.679831fc.chunk.css",
+    "static/js/2.7962cb9d.chunk.js": "/crispy-films-app/static/js/2.7962cb9d.chunk.js",
+    "static/js/2.7962cb9d.chunk.js.map": "/crispy-films-app/static/js/2.7962cb9d.chunk.js.map",
+    "index.html": "/crispy-films-app/index.html",
+    "static/css/2.679831fc.chunk.css.map": "/crispy-films-app/static/css/2.679831fc.chunk.css.map",
+    "static/js/2.7962cb9d.chunk.js.LICENSE.txt": "/crispy-films-app/static/js/2.7962cb9d.chunk.js.LICENSE.txt",
+    "static/media/logo.4f5fd7c0.svg": "/crispy-films-app/static/media/logo.4f5fd7c0.svg",
+    "static/media/user.517bc56d.svg": "/crispy-films-app/static/media/user.517bc56d.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.191e7638.js",
+    "static/css/2.679831fc.chunk.css",
+    "static/js/2.7962cb9d.chunk.js",
+    "static/js/main.a0087319.chunk.js"
+  ]
+}
