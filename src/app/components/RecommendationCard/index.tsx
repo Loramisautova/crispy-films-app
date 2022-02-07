@@ -20,7 +20,7 @@ export const RecommendationCard: React.FC<IRecommendationCardProps> = (props) =>
 
     const voteAveragePercentage = voteAverage ? `${Math.round(voteAverage * 10)}%` : 'NR';
 
-    // const dateFormat = format(new Date(releaseDate), 'dd/MM/yyyy');
+    const dateFormat = format(new Date(releaseDate), 'dd/MM/yyyy');
 
     return (
         <div className={classnames(classes.root, className)}>
@@ -28,7 +28,7 @@ export const RecommendationCard: React.FC<IRecommendationCardProps> = (props) =>
                 <img src={`https://www.themoviedb.org/t/p/w250_and_h141_face${backdropPath}`} alt={title} />
                 <div className={classes.date}>
                     <EventNoteSharpIcon fontSize="small" />
-                    <div className={classes.releaseDate}>{releaseDate}</div>
+                    <div className={classes.releaseDate}>{dateFormat}</div>
                 </div>
             </div>
             <div className={classes.titleWrapper}>
