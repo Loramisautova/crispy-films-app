@@ -13,12 +13,12 @@ export const tmdbTrendingApi = createApi({
     }),
     tagTypes: [EAPITag.TRENDING],
     endpoints: (build) => ({
-        getTrending: build.query<IPaginatedData<(IMovieListItem | ITVListItem)[]>, string>({
+        getTrending: build.query<IPaginatedData<IMovieListItem | ITVListItem>, string>({
             query: (period) => ({
                 url: `/${period}`,
                 params: { api_key: '2982bad10a93c3bc7f2c5245f865294c' },
             }),
-            transformResponse: (response: Record<string, unknown>): IPaginatedData<(IMovieListItem | ITVListItem)[]> =>
+            transformResponse: (response: Record<string, unknown>): IPaginatedData<IMovieListItem | ITVListItem> =>
                 transformToCamelCase(response),
         }),
     }),

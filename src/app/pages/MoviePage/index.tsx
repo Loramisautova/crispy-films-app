@@ -3,12 +3,13 @@ import { useParams } from 'react-router-dom';
 import { Grid } from '@material-ui/core';
 
 import { IIdRouteParam, IMovieListItem } from '../../features/models';
-import { useGetMovieCreditsQuery, useGetMovieQuery } from '../../features/movies/api';
+import { useGetMovieCreditsQuery, useGetMovieQuery, useGetMovieRecommendationsQuery } from '../../features/movies/api';
 
 import { CastScroller } from '../../components/CastScroller';
 import { PosterCard } from '../../components/PosterCard';
 import { MovieFacts } from '../../components/MovieFacts';
 import { filterCrewByJobs } from '../../utils/filterCrewByJobs';
+import { RecommendationScroller } from '../../components/RecomendationScroller';
 
 import { useStyles } from './styles';
 
@@ -17,6 +18,7 @@ export const MoviePage: React.FC = () => {
     const { id: movieId } = useParams<IIdRouteParam>();
     const useGetMovieState = useGetMovieQuery(movieId);
     const useGetMovieCreditsState = useGetMovieCreditsQuery(movieId);
+    const useGetMovieRecommendationsState = useGetMovieRecommendationsQuery(movieId);
     const {
         title,
         posterPath,
@@ -62,6 +64,11 @@ export const MoviePage: React.FC = () => {
                             viewMoreUrl={`/movie/${useGetMovieCreditsState.data.id}/cast`}
                         />
                     )}
+                    <div>
+                        {useGetMovieRecommendationsState.data?.results?.length && (
+                            <RecommendationScroller recommendations={useGetMovieRecommendationsState.data.results} />
+                        )}
+                    </div>
                 </Grid>
                 <Grid item xs={3}>
                     {useGetMovieState.data && (

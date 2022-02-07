@@ -3,7 +3,15 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
 import { TMDB_API_BASE_URL } from '../../consts';
 import { transformToCamelCase } from '../../utils/transformToCamelCase';
 import { EAPITag } from '../enums';
-import { IMediaCreditList, IPaginatedTvList, ITVCast, ITVListItem } from '../models';
+import {
+    IMediaCreditList,
+    IPaginatedData,
+    IPaginatedTvList,
+    IRecommendations,
+    ITVCast,
+    ITVListItem,
+    ITvRecommendationItem,
+} from '../models';
 
 /** TMDB tv api. */
 export const tmdbTvApi = createApi({
@@ -44,8 +52,26 @@ export const tmdbTvApi = createApi({
                 };
             },
         }),
+        getTvRecommendations: build.query<IPaginatedData<IRecommendations>, string>({
+            query: (tvId) => ({
+                url: `/${tvId}/recommendations`,
+                params: { api_key: '2982bad10a93c3bc7f2c5245f865294c' },
+            }),
+            transformResponse: (response: Record<string, unknown>): IPaginatedData<IRecommendations> => {
+                const data = transformToCamelCase<IPaginatedData<ITvRecommendationItem>>(response);
+
+                return {
+                    ...data,
+                    results: data.results.map((item) => ({
+                        ...item,
+                        title: item.name || item.originalTitle,
+                        date: item.firstAirDate,
+                    })),
+                };
+            },
+        }),
     }),
 });
 
 // eslint-disable-next-line @typescript-eslint/unbound-method
-export const { useGetPopularTvQuery, useGetTvQuery, useGetTvCreditsQuery } = tmdbTvApi;
+export const { useGetPopularTvQuery, useGetTvQuery, useGetTvCreditsQuery, useGetTvRecommendationsQuery } = tmdbTvApi;

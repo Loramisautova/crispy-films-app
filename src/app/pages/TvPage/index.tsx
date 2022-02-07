@@ -6,14 +6,17 @@ import { CastScroller } from '../../components/CastScroller';
 import { PosterCard } from '../../components/PosterCard';
 import { TvFacts } from '../../components/TvFacts';
 import { IIdRouteParam, ITVListItem } from '../../features/models';
-import { useGetTvCreditsQuery, useGetTvQuery } from '../../features/tv/api';
+import { useGetTvCreditsQuery, useGetTvQuery, useGetTvRecommendationsQuery } from '../../features/tv/api';
 import { useStyles } from '../MoviePage/styles';
+import { RecommendationScroller } from '../../components/RecomendationScroller';
 
 export const TvPage: React.FC = () => {
     const classes = useStyles();
     const { id: tvId } = useParams<IIdRouteParam>();
     const useGetTvState = useGetTvQuery(tvId);
     const useGetTvCreditsState = useGetTvCreditsQuery(tvId);
+    const useGetTvRecommendationsState = useGetTvRecommendationsQuery(tvId);
+
     const {
         name,
         posterPath,
@@ -66,6 +69,12 @@ export const TvPage: React.FC = () => {
                             viewMoreUrl={`/tv/${useGetTvCreditsState.data.id}/cast`}
                         />
                     )}
+
+                    <div>
+                        {useGetTvRecommendationsState.data?.results?.length && (
+                            <RecommendationScroller recommendations={useGetTvRecommendationsState.data.results} />
+                        )}
+                    </div>
                 </Grid>
                 <Grid item xs={3}>
                     <TvFacts status={status} networks={networks} type={type} originalLanguage={originalLanguage} />
